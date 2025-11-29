@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=/OnlineCV/" />
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // SPA fallback: redirect to index.html and preserve route
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      var newUrl = '/OnlineCV/' + (path.replace(/^\/OnlineCV\//, '')) + search + hash;
+      window.location.replace(newUrl);
+    </script>
   </head>
   <body>
     <p>Redirecting...</p>
