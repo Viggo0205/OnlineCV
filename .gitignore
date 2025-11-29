@@ -10,3 +10,5 @@ coverage/
 *.tgz
 package-lock.json
 node_modules
+
+index.html
