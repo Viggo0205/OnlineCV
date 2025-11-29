@@ -11,7 +11,7 @@ const Header = () => {
       <div className="header-content">
         <div className="profile-section">
           <div className="profile-image">
-            <img src={"/src/assets/ProfilBillede.PNG"} alt="Profil billede" className="profile-avatar" />
+            <img src={"/OnlineCV/ProfilBillede.PNG"} alt="Profil billede" className="profile-avatar" />
           </div>
           
           <div className="profile-info">
