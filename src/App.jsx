@@ -14,6 +14,7 @@ import './styles/App.css'
 function App() {
   const [currentPage, setCurrentPage] = useState('personal')
   const [theme, setTheme] = useState('light')
+  const [lang, setLang] = useState('da')
 
   // Load saved theme from localStorage
   useEffect(() => {
@@ -33,15 +34,16 @@ function App() {
   // Main CV content (single page view)
   const renderMainCV = () => (
     <div className="cv-container">
-      <Header />
-      <main className="main-content">
-        <PersonalInfo />
-        <Skills />
-        <Experience />
-        <Projects />
-        <SystemDevelopment />
-        <Contact />
-      </main>
+      <Header lang={lang} setLang={setLang} />
+        <div className="main-content">
+          {/* Interests and highlights in the same container as header */}
+          <PersonalInfo lang={lang} />
+          <Skills lang={lang} />
+          <Experience lang={lang} />
+          {/* <Projects lang={lang} /> */}
+          <SystemDevelopment lang={lang} />
+          <Contact lang={lang} />
+        </div>
     </div>
   )
 
@@ -49,19 +51,19 @@ function App() {
   const renderPageContent = () => {
     switch(currentPage) {
       case 'personal':
-        return <PersonalInfo />
+        return <PersonalInfo lang={lang} />
       case 'skills':
-        return <Skills />
+        return <Skills lang={lang} />
       case 'experience':
-        return <Experience />
+        return <Experience lang={lang} />
       case 'projects':
-        return <Projects />
+        return <Projects lang={lang} />
       case 'system':
-        return <SystemDevelopment />
+        return <SystemDevelopment lang={lang} />
       case 'contact':
-        return <Contact />
+        return <Contact lang={lang} />
       default:
-        return <PersonalInfo />
+        return <PersonalInfo lang={lang} />
     }
   }
 
@@ -74,6 +76,8 @@ function App() {
             setCurrentPage={setCurrentPage}
             theme={theme}
             toggleTheme={toggleTheme}
+            lang={lang}
+            setLang={setLang}
           />
           
           <div className="app-content container">
@@ -84,37 +88,36 @@ function App() {
               {/* Individual page routes */}
               <Route path="/personal" element={
                 <div className="page-container">
-                  <Header />
-                  <PersonalInfo />
+                  <Header lang={lang} setLang={setLang} />
+                  <PersonalInfo lang={lang} />
                 </div>
-              } />
               } />
               
               <Route path="/experience" element={
                 <div className="page-container">
-                  <Header />
-                  <Experience />
+                  <Header lang={lang} setLang={setLang} />
+                  <Experience lang={lang} />
                 </div>
               } />
               
               <Route path="/projects" element={
                 <div className="page-container">
-                  <Header />
-                  <Projects />
+                  <Header lang={lang} setLang={setLang} />
+                  <Projects lang={lang} />
                 </div>
               } />
               
               <Route path="/system" element={
                 <div className="page-container">
-                  <Header />
-                  <SystemDevelopment />
+                  <Header lang={lang} setLang={setLang} />
+                  <SystemDevelopment lang={lang} />
                 </div>
               } />
               
               <Route path="/contact" element={
                 <div className="page-container">
-                  <Header />
-                  <Contact />
+                  <Header lang={lang} setLang={setLang} />
+                  <Contact lang={lang} />
                 </div>
               } />
               

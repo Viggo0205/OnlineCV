@@ -1,56 +1,34 @@
 import React, { useState, useEffect } from 'react'
+import SkillsCarousel from './SkillsCarousel'
 import { Code, Database, Settings, Wrench } from 'lucide-react'
 import cvData from '../data/cvData'
 import './Skills.css'
 
-const Skills = () => {
-  const { programmingSkills, relevantSkills } = cvData
-  const [visibleSkills, setVisibleSkills] = useState(false)
+const Skills = ({ lang = 'da' }) => {
+  const [slideDirection, setSlideDirection] = useState(null);
+  const { programmingSkills, relevantSkills } = cvData;
+  const [visibleSkills, setVisibleSkills] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setVisibleSkills(true), 300)
-    return () => clearTimeout(timer)
-  }, [])
-
-
-  // Karusel til programmeringssprog
-  const [currentSkill, setCurrentSkill] = useState(0);
-  const languages = programmingSkills.languages;
-  const handlePrev = () => setCurrentSkill((prev) => (prev === 0 ? languages.length - 1 : prev - 1));
-  const handleNext = () => setCurrentSkill((prev) => (prev === languages.length - 1 ? 0 : prev + 1));
-
-  // Auto-play karusel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSkill((prev) => (prev === languages.length - 1 ? 0 : prev + 1));
-    }, 2000);
+      setSlideDirection('right');
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrentIdx((prev) => (prev + 1) % programmingSkills.languages.length);
+        setSlideDirection(null);
+      }, 700);
+    }, 2500);
     return () => clearInterval(interval);
-  }, [languages.length]);
+  }, [programmingSkills.languages.length]);
 
-  const SkillCarousel = () => (
-    <div className="skill-carousel">
-      <button className="carousel-btn" onClick={handlePrev}>&lt;</button>
-      <div className="carousel-content">
-        <div className="skill-item">
-          <div className="skill-header">
-            <span className="skill-name">{languages[currentSkill].name}</span>
-            <span className="skill-level">{languages[currentSkill].level}%</span>
-          </div>
-          <div className="progress-bar">
-            <div 
-              className="progress-fill"
-              style={{
-                width: visibleSkills ? `${languages[currentSkill].level}%` : '0%',
-                transitionDelay: `0ms`
-              }}
-            />
-          </div>
-          <span className="skill-experience">{languages[currentSkill].experience}</span>
-        </div>
-      </div>
-      <button className="carousel-btn" onClick={handleNext}>&gt;</button>
-    </div>
-  )
+  useEffect(() => {
+    const timer = setTimeout(() => setVisibleSkills(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const languages = programmingSkills.languages;
 
   return (
     <section className="skills section">
@@ -81,13 +59,15 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Programming Languages Karusel */}
+      {/* Programming Languages Carousel */}
       <div className="skills-category">
         <h3 className="category-title">
           <Code className="category-icon" />
-          Programmeringssprog
+          {lang === 'da' ? 'Programmeringssprog' : 'Programming Languages'}
         </h3>
-        <SkillCarousel />
+        <div style={{ maxWidth: 420, margin: '0 auto', padding: '1.5rem 0' }}>
+          <SkillsCarousel languages={programmingSkills.languages} />
+        </div>
       </div>
 
       {/* Tools & Technologies */}
@@ -98,10 +78,13 @@ const Skills = () => {
         </h3>
         <div className="tools-grid">
           {programmingSkills.tools.map((tool, index) => (
-            <div key={index} className="tool-badge badge badge-primary">
-              {tool}
+            <div key={index} className="tool-badge">
+              <span>{tool}</span>
             </div>
           ))}
+          <div className="tool-badge">
+            <span>MCP-servers</span>
+          </div>
         </div>
       </div>
 

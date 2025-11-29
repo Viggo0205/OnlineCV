@@ -89,13 +89,36 @@ export const cvData = {
   },
 
   personalProfile: {
-    description: "Jeg er en engageret og energisk person, der trives både selvstændigt og i teams. Jeg har en stor passion for teknologi og nyder at tage nye udfordringer op inden for programmering, elektronik og systemudvikling. Min nysgerrighed driver mig til konstant at udvikle mine færdigheder og udforske nye teknologier.",
-    interests: [
-      "Computer spil med venner",
-      "Fitness træning",
-      "Airsoft i weekenderne",
-      "Sociale aktiviteter med venner"
-    ]
+    description: {
+      da: "Jeg er en engageret og energisk person, der trives både selvstændigt og i teams. Jeg har en stor passion for teknologi og nyder at tage nye udfordringer op inden for programmering, elektronik og systemudvikling. Min nysgerrighed driver mig til konstant at udvikle mine færdigheder og udforske nye teknologier.",
+      en: "I am an engaged and energetic person who thrives both independently and in teams. I have a great passion for technology and enjoy taking on new challenges in programming, electronics, and system development. My curiosity drives me to constantly develop my skills and explore new technologies."
+    },
+    interests: {
+      da: [
+        "Computer spil med venner",
+        "Fitness træning",
+        "Airsoft i weekenderne",
+        "Sociale aktiviteter med venner"
+      ],
+      en: [
+        "Computer games with friends",
+        "Fitness training",
+        "Airsoft on weekends",
+        "Social activities with friends"
+      ]
+    },
+    highlights: {
+      da: [
+        { title: "Arbejdsform", text: "Trives både selvstændigt og i teams" },
+        { title: "Motivation", text: "Stor passion for teknologi og innovation" },
+        { title: "Tilgang", text: "Nysgerrig og lærer konstant nye teknologier" }
+      ],
+      en: [
+        { title: "Work Style", text: "Thrives both independently and in teams" },
+        { title: "Motivation", text: "Great passion for technology and innovation" },
+        { title: "Approach", text: "Curious and constantly learning new technologies" }
+      ]
+    }
   },
 
   experience: [

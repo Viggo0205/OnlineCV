@@ -1,3 +1,9 @@
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
 @media print {
   .projects, .projects-grid, .project-card, .project-header {
     background: #fff !important;

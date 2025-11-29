@@ -1,3 +1,16 @@
+@media (max-width: 900px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 60px;
+    gap: var(--spacing-xs);
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: flex-start;
+  }
+}
 .navigation {
   background: var(--bg-card);
   box-shadow: var(--shadow-md);

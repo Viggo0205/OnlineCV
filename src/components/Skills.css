@@ -1,3 +1,121 @@
+.carousel-edge-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #2979ff;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 1;
+}
+.carousel-edge-arrow.left-arrow {
+  left: 2vw;
+}
+.carousel-edge-arrow.right-arrow {
+  right: 2vw;
+}
+.languages-carousel-full {
+  position: relative;
+}
+.smooth-slide {
+  overflow: hidden;
+}
+.carousel-slide-left {
+  animation: slideLeft 0.3s cubic-bezier(.4,0,.2,1);
+}
+.carousel-slide-right {
+  animation: slideRight 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes slideLeft {
+  from { opacity: 0.6; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0.6; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.carousel-fade {
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+}
+/* Programming Languages Carousel */
+
+.languages-carousel-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.languages-carousel {
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: stretch;
+  padding: 1.5rem 0 0.5rem 0;
+}
+
+
+.language-card.large {
+  min-width: 180px;
+  max-width: 220px;
+  padding: 2rem 1rem 1rem 1rem;
+  font-size: 1.2rem;
+  background: var(--bg-secondary, #23293a);
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.5rem 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.language-card.large:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.16);
+  border-color: var(--primary-color, #4f8cff);
+}
+
+.language-logo.large {
+  width: 72px;
+  height: 72px;
+}
+
+.language-name.large {
+  font-size: 1.2rem;
+}
+
+.carousel-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .languages-carousel {
+    gap: 1.5rem;
+  }
+  .language-card.large {
+    min-width: 120px;
+    max-width: 140px;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    font-size: 1rem;
+  }
+  .language-logo.large {
+    width: 48px;
+    height: 48px;
+  }
+  .language-name.large {
+    font-size: 1rem;
+  }
+}
 @media print {
   .skills, .skills-category, .category-title, .general-skills-grid, .programming-skills-grid, .tools-grid, .frameworks-grid {
     background: #fff !important;
@@ -188,25 +306,44 @@
 
 /* Tools Grid */
 .tools-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  justify-content: flex-start;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .tool-badge {
-  background: var(--primary-color) !important;
-  color: var(--text-white) !important;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  transition: all var(--transition-fast);
+  background: var(--bg-secondary);
+  color: var(--primary-color);
+  border-radius: 1.5rem;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem 1rem 1rem 1rem;
+  margin: 0.5rem 0.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
+.tool-badge span {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--primary-color);
+}
 .tool-badge:hover {
-  background: var(--primary-dark) !important;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color, #4f8cff);
 }
 
 /* Frameworks Grid */

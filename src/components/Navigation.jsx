@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 import './Navigation.css'
 
-const Navigation = () => {
+const Navigation = ({ lang = 'da', setLang }) => {
   const { theme, toggleTheme } = useTheme()
   const location = useLocation()
 
@@ -43,7 +43,6 @@ const Navigation = () => {
           {navigationItems.map((item) => {
             const IconComponent = item.icon
             const isActive = location.pathname === item.path
-            
             return (
               <li key={item.path} className="nav-item">
                 <Link 
@@ -58,22 +57,19 @@ const Navigation = () => {
           })}
         </ul>
 
-        <div className="nav-actions">
-          <button 
-            className="nav-action-btn"
-            onClick={handlePrint}
-            title="Download PDF"
-          >
-            <Download size={18} />
-            <span className="nav-action-text">PDF</span>
-          </button>
-          
-          <button 
-            className="nav-action-btn theme-toggle"
-            onClick={toggleTheme}
-            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-          >
+        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', gap: '0.5em' }}>
+          <button className="btn btn-secondary" onClick={toggleTheme}>
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button className="btn btn-outline" onClick={handlePrint}>
+            <Download size={16} /> Print
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => setLang(lang === 'da' ? 'en' : 'da')}
+            style={{ fontWeight: 600 }}
+          >
+            {lang === 'da' ? 'English' : 'Dansk'}
           </button>
         </div>
       </div>

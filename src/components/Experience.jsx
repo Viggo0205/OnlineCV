@@ -12,55 +12,48 @@ const Experience = () => {
         <Briefcase className="section-title-icon" />
         Erfaring
       </h2>
-
-      <div className="timeline">
-        {experience.map((job, index) => (
-          <div key={job.id} className="timeline-item">
-            <div className="timeline-marker"></div>
-            <div className="timeline-content card">
-              <div className="timeline-header">
-                <h3 className="position-title">{job.title}</h3>
-                <span className="company-name">{job.company}</span>
-                <div className="period">
-                  <Calendar size={16} />
-                  {job.period}
-                </div>
-              </div>
-              
-
-              <p className="job-description">{job.description}</p>
-
-              {job.courses && (
-                <ul className="course-list">
-                  {job.courses.map((course, courseIndex) => (
-                    <li key={courseIndex} className="course-item">{course}</li>
+      <div className="experience-cards">
+        {experience.map((job) => (
+          <div key={job.id} className="profile-card experience-card">
+            <div className="profile-card-title" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
+              {job.title}
+            </div>
+            <div className="company-name" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
+              <a href="#" style={{color: '#2979ff', textDecoration: 'underline', textAlign: 'left'}}>{job.company}</a>
+            </div>
+            <div className="period" style={{marginBottom: '0.5rem', color: 'var(--text-tertiary)', textAlign: 'left'}}>
+              <Calendar size={16} style={{marginRight: '0.5em'}} />
+              {job.period}
+            </div>
+            <div className="job-description" style={{marginBottom: '1rem', textAlign: 'left'}}>{job.description}</div>
+            {job.courses && (
+              <ul className="course-list" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
+                {job.courses.map((course, courseIndex) => (
+                  <li key={courseIndex} className="course-item" style={{color: 'var(--text-primary)', fontSize: '1rem', textAlign: 'left'}}>{course}</li>
+                ))}
+              </ul>
+            )}
+            {job.achievements && (
+              <div className="achievements">
+                <h4 className="achievements-title" style={{textAlign: 'left'}}>Resultater & Erfaringer:</h4>
+                <ul className="achievements-list" style={{textAlign: 'left'}}>
+                  {job.achievements.map((achievement, achIndex) => (
+                    <li key={achIndex} className="achievement-item" style={{textAlign: 'left'}}>
+                      {achievement}
+                    </li>
                   ))}
                 </ul>
-              )}
-
-              {job.achievements && (
-                <div className="achievements">
-                  <h4 className="achievements-title">Resultater & Erfaringer:</h4>
-                  <ul className="achievements-list">
-                    {job.achievements.map((achievement, achIndex) => (
-                      <li key={achIndex} className="achievement-item">
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {job.technologies && (
-                <div className="technologies">
-                  {job.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-badge badge badge-primary">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
+              </div>
+            )}
+            {job.technologies && (
+              <div className="technologies" style={{textAlign: 'left'}}>
+                {job.technologies.map((tech, techIndex) => (
+                  <span key={techIndex} className="tech-badge badge badge-primary" style={{textAlign: 'left'}}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -1,3 +1,78 @@
+/* Responsive layout for highlight cards */
+.profile-card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.profile-card {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  flex: 1 1 100%;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 900px) {
+  .profile-card-row {
+    gap: 1.5rem;
+  }
+  .profile-card {
+    min-width: 220px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-card-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .profile-card {
+    min-width: 180px;
+    max-width: 95vw;
+  }
+}
+/* Modern card style for profile sections */
+.profile-card {
+  background: var(--bg-secondary, #23293a);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  padding: 2rem 1.5rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  max-width: 320px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.profile-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.profile-card-title {
+  color: #2563eb;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.profile-card-text {
+  color: #e0e7ef;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
 @media print {
   .personal-info, .personal-content, .personal-description, .interests-section, .personal-highlights {
     background: #fff !important;
