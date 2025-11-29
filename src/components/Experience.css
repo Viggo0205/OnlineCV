@@ -1,0 +1,210 @@
+@media print {
+  .experience, .timeline, .timeline-content, .timeline-header {
+    background: #fff !important;
+    color: #222 !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .timeline-marker, .achievements-title, .technologies {
+    display: none !important;
+  }
+  .position-title {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    margin-bottom: 0.1em !important;
+  }
+  .company-name, .period {
+    font-size: 0.95rem !important;
+    color: #222 !important;
+    margin-bottom: 0.1em !important;
+  }
+  .job-description {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.2em !important;
+  }
+  .course-list, .achievements-list {
+    margin: 0.2em 0 0.5em 1.2em !important;
+    padding: 0 !important;
+    list-style: disc inside !important;
+    color: #222 !important;
+    font-size: 0.95rem !important;
+  }
+  .course-item, .achievement-item {
+    margin-bottom: 0.1em !important;
+  }
+}
+.experience {
+  /* Base section styles inherited */
+}
+
+.timeline {
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--primary-light));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding-left: var(--spacing-lg);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.timeline-content {
+  background: var(--bg-secondary);
+  transition: transform var(--transition-normal);
+}
+
+.timeline-content:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.timeline-header {
+  margin-bottom: var(--spacing-md);
+}
+
+.position-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.company-name {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.job-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+}
+
+.achievements-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.achievements-list {
+  list-style: none;
+  margin-bottom: var(--spacing-md);
+}
+
+.achievement-item {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  position: relative;
+  line-height: 1.6;
+}
+
+.achievement-item::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.tech-badge {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  padding: 4px var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: var(--spacing-md);
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    padding-left: var(--spacing-md);
+  }
+
+  .timeline-marker {
+    left: 4px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .position-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .company-name {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    padding-left: var(--spacing-sm);
+  }
+
+  .timeline-item {
+    padding-left: var(--spacing-sm);
+  }
+
+  .technologies {
+    gap: 4px;
+  }
+
+  .tech-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}

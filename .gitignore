@@ -1,0 +1,14 @@
+
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+npm-debug.log*
+coverage/
+*.tgz
+package-lock.json
+node_modules

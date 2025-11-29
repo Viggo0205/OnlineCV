@@ -1,0 +1,134 @@
+@media print {
+  .projects, .projects-grid, .project-card, .project-header {
+    background: #fff !important;
+    color: #222 !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .project-header, .project-card {
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    margin-bottom: 0.2em !important;
+  }
+  .highlights {
+    margin: 0.2em 0 0.5em 1.2em !important;
+    padding: 0 !important;
+    list-style: disc inside !important;
+    color: #222 !important;
+    font-size: 0.95rem !important;
+  }
+}
+.projects {
+  /* Base section styles inherited */
+}
+
+.projects-grid {
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-card {
+  background: var(--bg-secondary);
+  transition: transform var(--transition-normal);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-header {
+  margin-bottom: var(--spacing-md);
+}
+
+.project-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.project-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+}
+
+.project-highlights {
+  margin-bottom: var(--spacing-md);
+}
+
+.highlights-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.highlights-list {
+  list-style: none;
+}
+
+.highlight-item {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  position: relative;
+  line-height: 1.6;
+  font-size: var(--font-size-sm);
+}
+
+.highlight-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.projects-note {
+  background: var(--bg-tertiary);
+  border-left: 4px solid var(--primary-color);
+  margin-top: var(--spacing-xl);
+}
+
+.note-text {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .project-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .project-technologies {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .highlights-title {
+    font-size: var(--font-size-sm);
+  }
+
+  .highlight-item {
+    font-size: var(--font-size-xs);
+  }
+
+  .note-text {
+    font-size: var(--font-size-sm);
+  }
+}
