@@ -7,7 +7,7 @@ const SystemDevelopment = ({ lang = 'da' }) => {
   const { systemDevelopment } = cvData
 
   return (
-    <section className="system-development section">
+    <section id="system" className="system-development section">
       <h2 className="section-title">
         <Settings className="section-title-icon" />
         {lang === 'da' ? 'Systemudvikling' : 'System Development'}

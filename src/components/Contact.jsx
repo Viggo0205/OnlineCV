@@ -1,17 +1,17 @@
+
 import React from 'react'
 import { Mail, Phone, MapPin, Download } from 'lucide-react'
 import cvData from '../data/cvData'
+import CVPDFExport from './CVPDFExport'
 import './Contact.css'
 
 const Contact = ({ lang = 'da' }) => {
   const { personalInfo } = cvData
 
-  const handlePrint = () => {
-    window.print()
-  }
+
 
   return (
-    <section className="contact section">
+    <section id="contact" className="contact section">
       <h2 className="section-title">
         <Mail className="section-title-icon" />
         {lang === 'da' ? 'Kontakt' : 'Contact'}
@@ -56,14 +56,62 @@ const Contact = ({ lang = 'da' }) => {
           <h3 className="card-title">{lang === 'da' ? 'Download CV' : 'Download CV'}</h3>
           <p className="download-description">
             {lang === 'da'
-              ? 'Download mit CV som PDF eller print denne side direkte fra din browser.'
-              : 'Download my CV as PDF or print this page directly from your browser.'}
+              ? 'Download mit CV som PDF.'
+              : 'Download my CV as PDF.'}
           </p>
-          
-          <button className="download-btn btn btn-primary" onClick={handlePrint}>
-            <Download size={18} />
-            Download/Print PDF
-          </button>
+          <div style={{ marginTop: '1rem' }}>
+            <CVPDFExport
+              cvData={{
+                name: cvData.personalInfo.name,
+                title: typeof cvData.personalInfo.title === 'object' ? (cvData.personalInfo.title[lang] || cvData.personalInfo.title['da']) : cvData.personalInfo.title,
+                avatar: '/OnlineCV/ProfilBillede.PNG',
+                phone: cvData.personalInfo.phone,
+                email: cvData.personalInfo.email,
+                address: typeof cvData.personalInfo.address === 'object' ? (cvData.personalInfo.address[lang] || cvData.personalInfo.address['da']) : cvData.personalInfo.address,
+                linkedin: cvData.personalInfo.linkedin,
+                keySkills: cvData.relevantSkills.generalSkills.flatMap(cat => cat.skills.map(skill => typeof skill === 'object' ? (skill[lang] || skill['da'] || Object.values(skill)[0]) : skill)),
+                technicalSkills: [
+                  ...cvData.programmingSkills.languages.map(langObj => langObj.name),
+                  ...cvData.programmingSkills.tools,
+                  ...cvData.programmingSkills.frameworks.map(fw => fw.name)
+                ],
+                summary: typeof cvData.personalInfo.summary === 'object' ? (cvData.personalInfo.summary[lang] || cvData.personalInfo.summary['da']) : cvData.personalInfo.summary,
+                education: [
+                  {
+                    degree: 'GameIT College',
+                    location: 'Viden Djurs',
+                    years: '2015-2018',
+                    specialization: 'Game Development & IT'
+                  },
+                  {
+                    degree: 'Bachelor of Science in Cyber Technology',
+                    location: 'DTU',
+                    years: '2019-2022',
+                    specialization: 'Programming, Software, Networks, Hardware'
+                  }
+                ],
+                experience: cvData.experience.map(exp => ({
+                  title: typeof exp.title === 'object' ? (exp.title[lang] || exp.title['da'] || Object.values(exp.title)[0]) : exp.title,
+                  location: exp.company,
+                  years: exp.period,
+                  description: typeof exp.description === 'object' ? (exp.description[lang] || exp.description['da'] || Object.values(exp.description)[0]) : exp.description
+                })),
+                lang: lang
+              }}
+              style={{
+                height: '40px',
+                minHeight: '40px',
+                padding: '0 1em',
+                boxSizing: 'border-box',
+                display: 'inline-flex',
+                alignItems: 'center',
+                verticalAlign: 'middle',
+                gap: '0.5em',
+                textDecoration: 'none',
+                marginTop: '1rem'
+              }}
+            />
+          </div>
         </div>
       </div>
 

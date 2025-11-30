@@ -31,7 +31,7 @@ const Skills = ({ lang = 'da' }) => {
   const languages = programmingSkills.languages;
 
   return (
-    <section className="skills section">
+    <section id="skills" className="skills section">
       <h2 className="section-title">
         <Code className="section-title-icon" />
         {lang === 'da' ? 'Kompetencer' : 'Skills'}

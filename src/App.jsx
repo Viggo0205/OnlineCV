@@ -40,7 +40,7 @@ function App() {
           <PersonalInfo lang={lang} />
           <Skills lang={lang} />
           <Experience lang={lang} />
-          {/* <Projects lang={lang} /> */}
+          <Projects lang={lang} />
           <SystemDevelopment lang={lang} />
           <Contact lang={lang} />
         </div>

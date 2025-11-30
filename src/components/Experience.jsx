@@ -7,7 +7,7 @@ const Experience = ({ lang = 'en' }) => {
   const { experience } = cvData
 
   return (
-    <section className="experience section">
+    <section id="experience" className="experience section">
       <h2 className="section-title">
         <Briefcase className="section-title-icon" />
         {lang === 'da' ? 'Erfaring' : 'Experience'}

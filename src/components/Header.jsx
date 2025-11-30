@@ -18,7 +18,7 @@ const Header = ({ lang = 'da', setLang }) => {
   }
 
   return (
-    <header className="header section">
+  <header id="personal" className="header section">
       <div className="header-content">
         <div className="profile-section">
           <div className="profile-image">

@@ -3,10 +3,7 @@ import { User, Heart, Coffee, Gamepad2, Dumbbell, Target } from 'lucide-react'
 import cvData from '../data/cvData'
 import './PersonalInfo.css'
 
-const PersonalInfo = ({ lang = 'da' }) => {
-  const { personalProfile } = cvData;
 
-  return null;
-}
+const PersonalInfo = ({ lang = 'da' }) => null;
 
 export default PersonalInfo

@@ -32,8 +32,8 @@ export const cvData = {
         ]
       },
       {
-        category: { da: "IT Sikkerhed", en: "IT Security" },
-        skills: [
+          skills: [
+            { da: "Objektorienteret programmering", en: "Object-oriented programming" },
           { da: "Kryptering", en: "Encryption" },
           { da: "Hashing", en: "Hashing" },
           { da: "Sikkerhedsprotokoller", en: "Security protocols" }
@@ -50,7 +50,6 @@ export const cvData = {
       {
         category: { da: "Kompetencer opnået via DTU-kurser", en: "Skills acquired via DTU courses" },
         skills: [
-          { da: "Objektorienteret og funktionel programmering", en: "Object-oriented and functional programming" },
           { da: "Software engineering og systemudvikling", en: "Software engineering and system development" },
           { da: "Netværk og datakommunikation", en: "Networks and data communication" },
           { da: "Hardwaredesign og digitalteknik", en: "Hardware design and digital technology" },
@@ -192,10 +191,10 @@ export const cvData = {
       id: 2,
       title: { da: "Praktikforløb – Backend udvikling af internt værktøj", en: "Internship – Backend Development of Internal Tool" },
       company: "Kruso",
-      period: "Forår 2025",
+      period: "Efterår 2025 (10 uger)",
       description: {
-        da: "I mit praktikforløb hos Kruso arbejdede jeg med backend-udvikling af et internt værktøj, hvor jeg anvendte Umbraco og .NET 9.0. Jeg var ansvarlig for at designe og implementere hele strukturen af backenden – fra API-endpoints til service- og repository-lag – samt integrationer, så værktøjet kunne understøtte virksomhedens interne processer effektivt. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
-        en: "During my internship at Kruso, I worked on backend development of an internal tool using Umbraco and .NET 9.0. I was responsible for designing and implementing the entire backend structure – from API endpoints to service and repository layers – as well as integrations to support the company's internal processes efficiently. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
+        da: "I mit 10-ugers praktikforløb hos Kruso i efteråret 2025 arbejdede jeg med backend-udvikling af et internt værktøj, hvor jeg anvendte Umbraco og .NET 9.0. Jeg var ansvarlig for at designe og implementere hele strukturen af backenden – fra API-endpoints til service- og repository-lag – samt integrationer, så værktøjet kunne understøtte virksomhedens interne processer effektivt. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
+        en: "During my 10-week internship at Kruso in the fall of 2025, I worked on backend development of an internal tool using Umbraco and .NET 9.0. I was responsible for designing and implementing the entire backend structure – from API endpoints to service and repository layers – as well as integrations to support the company's internal processes efficiently. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
       },
       achievements: [
         { da: "Design og implementering af backend med .NET 9.0", en: "Design and implementation of backend with .NET 9.0" },
@@ -211,25 +210,59 @@ export const cvData = {
   projects: [
     {
       id: 1,
-      title: "Web Application Projects",
-      description: "Forskellige web-applikationer udviklet gennem uddannelse og praktik",
-      technologies: ["C#", "JavaScript", "SQL", "HTML", "CSS"],
-      highlights: [
-        "REST API udvikling",
-        "Database design og implementering",
-        "Frontend med moderne frameworks"
-      ]
+      title: "MultiplayerFarmington",
+      description: "Multiplayer farming game with networked architecture and real-time synchronization.",
+      technologies: ["C#", "Unity", "Networking"],
+      github: "https://github.com/Viggo0205/MultiplayerFarmington"
     },
     {
       id: 2,
-      title: "System Development Projects", 
-      description: "Systemudviklingsprojekter med fokus på arkitektur og design",
-      technologies: ["Java", "Python", "SQL", "UML"],
-      highlights: [
-        "Systemarkitektur design",
-        "Anvendelse af udviklingsmetoder",
-        "Team-baseret projektarbejde"
-      ]
+      title: "FullStackOpgave",
+      description: "Full-stack application with RESTful APIs, database integration, and modern development practices.",
+      technologies: ["C#", "ASP.NET", "Database"],
+      github: "https://github.com/Viggo0205/FullStackOpgave"
+    },
+    {
+      id: 3,
+      title: "DevOpsOpgave",
+      description: "DevOps implementation with CI/CD, version control, and automation.",
+      technologies: ["C#", "CI/CD", "Automation"],
+      github: "https://github.com/Viggo0205/DevOpsOpgave"
+    },
+    {
+      id: 4,
+      title: "OnlineCV",
+      description: "Interactive portfolio website showcasing projects and experience.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      github: "https://github.com/Viggo0205/OnlineCV"
+    },
+    {
+      id: 5,
+      title: "Hovedopgave",
+      description: "Recent Python development project demonstrating programming proficiency.",
+      technologies: ["Python", "Software Engineering"],
+      github: "https://github.com/Viggo0205/Hovedopgave"
+    },
+    {
+      id: 6,
+      title: "RESTful API Suite",
+      description: "Multiple RESTful API services demonstrating backend development expertise.",
+      technologies: ["C#", "Python", "REST", "HTTP"],
+        github: "https://github.com/Viggo0205/RestKajakTur"
+    },
+    {
+      id: 7,
+      title: "IoT & Embedded Systems",
+      description: "IoT solutions including UDPBroadcaster, SenseHat integration, and Raspberry Pi automation projects.",
+      technologies: ["Python", "Raspberry Pi", "Network Protocols"],
+      github: "https://github.com/Viggo0205/UDPBroadcaster"
+    },
+    {
+      id: 8,
+      title: "Web Applications",
+      description: "Multiple web applications showcasing frontend development skills and responsive design.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+        github: "https://github.com/Viggo0205/KajakTurWebApp"
     }
   ]
 };

@@ -1,3 +1,15 @@
+/* Ensure GitHub icon is visible in both dark and light mode */
+.project-link svg {
+  color: #222 !important;
+  stroke: #222 !important;
+  background: transparent;
+  transition: color 0.2s;
+}
+
+[data-theme="dark"] .project-link svg {
+  color: #fafafa !important;
+  stroke: #fafafa !important;
+}
 @media (max-width: 900px) {
   .projects-grid {
     grid-template-columns: 1fr;

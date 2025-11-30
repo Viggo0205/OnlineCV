@@ -1,3 +1,84 @@
+/* Ensure nav-right buttons are inline and aligned */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-left: auto;
+}
+/* Inline nav actions and hamburger for mobile */
+.nav-actions-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-left: auto;
+}
+@media (max-width: 900px) {
+  .nav-actions-inline {
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    position: static;
+  }
+}
+/* Hamburger menu styles */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  z-index: 101;
+}
+.hamburger-bar {
+  width: 28px;
+  height: 4px;
+  background: var(--text-primary);
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+@media (max-width: 900px) {
+  .nav-hamburger {
+    display: flex;
+  }
+  .nav-list {
+    display: none !important;
+    position: fixed !important;
+    top: 100px !important;
+    right: 10px !important;
+    left: unset !important;
+    width: 70vw !important;
+    max-width: 200px !important;
+    background: var(--bg-card) !important;
+    box-shadow: var(--shadow-md) !important;
+    flex-direction: column !important;
+    gap: var(--spacing-xs) !important;
+    align-items: flex-end !important;
+    z-index: 100 !important;
+    padding: 0.5em 1em 0.5em 1em !important;
+    border-radius: 0 0 0 12px !important;
+    transition: transform 0.2s, opacity 0.2s !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-10px) !important;
+  }
+  .nav-list.open {
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+}
 /* Ensure outline button uses theme text color */
 .btn-outline {
   color: var(--text-primary) !important;
