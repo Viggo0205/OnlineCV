@@ -60,7 +60,7 @@
 }
 
 .profile-card-title {
-  color: #2563eb;
+  color: #000;
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -68,7 +68,7 @@
 }
 
 .profile-card-text {
-  color: #e0e7ef;
+  color: var(--text-primary) !important;
   font-size: 1rem;
   text-align: center;
   margin-bottom: 0.5rem;

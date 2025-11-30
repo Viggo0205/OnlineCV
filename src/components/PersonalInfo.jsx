@@ -4,10 +4,9 @@ import cvData from '../data/cvData'
 import './PersonalInfo.css'
 
 const PersonalInfo = ({ lang = 'da' }) => {
-  const { personalProfile } = cvData
+  const { personalProfile } = cvData;
 
-
-  return null
+  return null;
 }
 
 export default PersonalInfo

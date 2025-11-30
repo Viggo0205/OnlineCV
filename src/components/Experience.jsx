@@ -33,6 +33,17 @@ const Experience = () => {
                 ))}
               </ul>
             )}
+            {/* DTU-kurser tags for DTU card only */}
+            {job.company === 'Danmarks Tekniske Universitet (DTU)' && (
+              <div className="technologies" style={{display: 'flex', flexWrap: 'wrap', gap: '0.5em', marginBottom: '1em'}}>
+                <span className="tech-badge badge badge-primary">C</span>
+                <span className="tech-badge badge badge-primary">Assembly</span>
+                <span className="tech-badge badge badge-primary">Matlab</span>
+                <span className="tech-badge badge badge-primary">Java</span>
+                <span className="tech-badge badge badge-primary">Python</span>
+                <span className="tech-badge badge badge-primary">VHDL</span>
+              </div>
+            )}
             {job.achievements && (
               <div className="achievements">
                 <h4 className="achievements-title" style={{textAlign: 'left'}}>Resultater & Erfaringer:</h4>

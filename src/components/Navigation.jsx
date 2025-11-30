@@ -20,13 +20,13 @@ const Navigation = ({ lang = 'da', setLang }) => {
   const location = useLocation()
 
   const navigationItems = [
-    { path: '/', label: 'Fuld CV', icon: Home },
-    { path: '/personal', label: 'Personlig Info', icon: User },
-    { path: '/skills', label: 'Kompetencer', icon: Code },
-    { path: '/experience', label: 'Erfaring', icon: Briefcase },
-    { path: '/system', label: 'Systemudvikling', icon: Settings },
-    { path: '/contact', label: 'Kontakt', icon: Mail }
-  ]
+    { path: '/', label: { da: 'Fuld CV', en: 'Full CV' }, icon: Home },
+    { path: '/personal', label: { da: 'Personlig Info', en: 'Personal Info' }, icon: User },
+    { path: '/skills', label: { da: 'Kompetencer', en: 'Skills' }, icon: Code },
+    { path: '/experience', label: { da: 'Erfaring', en: 'Experience' }, icon: Briefcase },
+    { path: '/system', label: { da: 'Systemudvikling', en: 'System Development' }, icon: Settings },
+    { path: '/contact', label: { da: 'Kontakt', en: 'Contact' }, icon: Mail }
+  ];
 
   const handlePrint = () => {
     window.print()
@@ -41,8 +41,8 @@ const Navigation = ({ lang = 'da', setLang }) => {
 
         <ul className="nav-list">
           {navigationItems.map((item) => {
-            const IconComponent = item.icon
-            const isActive = location.pathname === item.path
+            const IconComponent = item.icon;
+            const isActive = location.pathname === item.path;
             return (
               <li key={item.path} className="nav-item">
                 <Link 
@@ -50,10 +50,10 @@ const Navigation = ({ lang = 'da', setLang }) => {
                   className={`nav-link ${isActive ? 'active' : ''}`}
                 >
                   <IconComponent size={18} />
-                  <span className="nav-text">{item.label}</span>
+                  <span className="nav-text">{item.label[lang]}</span>
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
 

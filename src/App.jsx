@@ -83,7 +83,7 @@ function App() {
           <div className="app-content container">
             <Routes>
               {/* Main CV route - all content on one page */}
-              <Route path="/" element={renderMainCV()} />
+              <Route path="/OnlineCV" element={renderMainCV()} />
               
               {/* Individual page routes */}
               <Route path="/personal" element={
@@ -121,8 +121,8 @@ function App() {
                 </div>
               } />
               
-              {/* Redirect any unknown routes to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Redirect any unknown routes to /OnlineCV/ for GitHub Pages */}
+              <Route path="*" element={<Navigate to="/OnlineCV/" replace />} />
             </Routes>
           </div>
         </Router>

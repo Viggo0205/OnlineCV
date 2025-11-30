@@ -59,6 +59,14 @@ const SystemDevelopment = () => {
 
       <div className="system-description card">
         <h3 className="description-title">Systemudviklingskompetencer</h3>
+        <div className="dtu-tags">
+          <span className="dtu-tag">C</span>
+          <span className="dtu-tag">Assembly</span>
+          <span className="dtu-tag">Matlab</span>
+          <span className="dtu-tag">Java</span>
+          <span className="dtu-tag">Python</span>
+          <span className="dtu-tag">VHDL</span>
+        </div>
         <p className="description-text">
           Jeg har erfaring med flere systemudviklingsmetoder og værktøjer, der anvendes i udviklingsprocessen. 
           Gennem mine studier og praktikforløb har jeg arbejdet med forskellige tilgange til projekt- og 

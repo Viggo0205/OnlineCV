@@ -50,7 +50,7 @@
 }
 
 .contact-icon {
-  color: var(--primary-color);
+  color: var(--text-primary);
   flex-shrink: 0;
   margin-top: 2px;
 }

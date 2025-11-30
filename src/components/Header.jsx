@@ -27,7 +27,7 @@ const Header = ({ lang = 'da', setLang }) => {
           <div className="profile-info">
             <h1 className="profile-name">{personalInfo.name}</h1>
             <h2 className="profile-title">{personalInfo.title}</h2>
-            <p className="profile-summary">{personalInfo.summary}</p>
+            <p className="profile-summary">{cvData.personalProfile.description[lang]}</p>
           </div>
         </div>
         <div className="contact-info">

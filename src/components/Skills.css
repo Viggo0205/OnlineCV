@@ -1,10 +1,20 @@
+/* Recolor Bootstrap carousel arrow icons for theme compatibility */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(100%) !important; /* white for light mode */
+}
+
+[data-theme="dark"] .carousel-control-next-icon,
+[data-theme="dark"] .carousel-control-prev-icon {
+  filter: invert(0%) !important; /* black for dark mode */
+}
 .carousel-edge-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.5rem;
-  color: #2979ff;
-  opacity: 0.25;
+  color: var(--text-primary) !important;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 1;
 }
@@ -179,14 +189,14 @@
   gap: var(--spacing-sm);
   font-size: var(--font-size-xl);
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
   margin-bottom: var(--spacing-lg);
   padding-bottom: var(--spacing-xs);
   border-bottom: 2px solid var(--primary-color);
 }
 
 .category-icon {
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 /* General Skills */
@@ -209,7 +219,7 @@
 .skill-category-title {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-md);
 }
 
@@ -229,7 +239,7 @@
   content: '▸';
   position: absolute;
   left: 0;
-  color: var(--primary-color);
+  color: var(--text-primary);
   font-weight: bold;
 }
 
@@ -268,7 +278,7 @@
 .skill-level {
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .progress-bar {
@@ -320,7 +330,7 @@
 
 .tool-badge {
   background: var(--bg-secondary);
-  color: var(--primary-color);
+  color: var(--text-primary);
   border-radius: 1.5rem;
   font-size: var(--font-size-lg);
   font-weight: 600;
@@ -338,7 +348,7 @@
 .tool-badge span {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 .tool-badge:hover {
   transform: translateY(-6px) scale(1.05);
@@ -367,7 +377,7 @@
 .framework-name {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-sm);
 }
 
