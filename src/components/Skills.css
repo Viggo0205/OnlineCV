@@ -1,4 +1,14 @@
-/* Recolor Bootstrap carousel arrow icons for theme compatibility */
+.carousel-arrow, .carousel-page-counter {
+  color: var(--carousel-arrow-color);
+}
+
+:root {
+  --carousel-arrow-color: #222;
+}
+
+[data-theme="dark"] {
+  --carousel-arrow-color: #fff;
+}
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   filter: invert(100%) !important; /* white for light mode */

@@ -5,30 +5,9 @@ import cvData from '../data/cvData'
 import './Skills.css'
 
 const Skills = ({ lang = 'da' }) => {
-  const [slideDirection, setSlideDirection] = useState(null);
   const { programmingSkills, relevantSkills } = cvData;
-  const [visibleSkills, setVisibleSkills] = useState(false);
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSlideDirection('right');
-      setAnimating(true);
-      setTimeout(() => {
-        setCurrentIdx((prev) => (prev + 1) % programmingSkills.languages.length);
-        setSlideDirection(null);
-      }, 700);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [programmingSkills.languages.length]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisibleSkills(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
   const languages = programmingSkills.languages;
+  // Carousel now handles paging and page counter
 
   return (
     <section id="skills" className="skills section">
@@ -66,7 +45,7 @@ const Skills = ({ lang = 'da' }) => {
           {lang === 'da' ? 'Programmeringssprog' : 'Programming Languages'}
         </h3>
         <div style={{ maxWidth: 420, margin: '0 auto', padding: '1.5rem 0' }}>
-          <SkillsCarousel languages={programmingSkills.languages} />
+          <SkillsCarousel languages={languages} />
         </div>
       </div>
 
