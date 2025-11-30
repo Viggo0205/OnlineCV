@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Download } from 'lucide-react'
 import cvData from '../data/cvData'
 import './Contact.css'
 
-const Contact = () => {
+const Contact = ({ lang = 'da' }) => {
   const { personalInfo } = cvData
 
   const handlePrint = () => {
@@ -14,26 +14,26 @@ const Contact = () => {
     <section className="contact section">
       <h2 className="section-title">
         <Mail className="section-title-icon" />
-        Kontakt
+        {lang === 'da' ? 'Kontakt' : 'Contact'}
       </h2>
 
       <div className="contact-content">
         <div className="contact-info-card card">
-          <h3 className="card-title">Kontaktoplysninger</h3>
+          <h3 className="card-title">{lang === 'da' ? 'Kontaktoplysninger' : 'Contact Information'}</h3>
           
           <div className="contact-details">
             <div className="contact-item">
               <MapPin className="contact-icon" />
               <div className="contact-text">
-                <span className="contact-label">Adresse</span>
-                <span className="contact-value">{personalInfo.address}</span>
+                <span className="contact-label">{lang === 'da' ? 'Adresse' : 'Address'}</span>
+                <span className="contact-value">{typeof personalInfo.address === 'object' ? (personalInfo.address[lang] || personalInfo.address['da']) : personalInfo.address}</span>
               </div>
             </div>
 
             <div className="contact-item">
               <Phone className="contact-icon" />
               <div className="contact-text">
-                <span className="contact-label">Telefon</span>
+                <span className="contact-label">{lang === 'da' ? 'Telefon' : 'Phone'}</span>
                 <a href={`tel:+45${personalInfo.phone}`} className="contact-value contact-link">
                   +45 {personalInfo.phone}
                 </a>
@@ -43,7 +43,7 @@ const Contact = () => {
             <div className="contact-item">
               <Mail className="contact-icon" />
               <div className="contact-text">
-                <span className="contact-label">E-mail</span>
+                <span className="contact-label">{lang === 'da' ? 'E-mail' : 'Email'}</span>
                 <a href={`mailto:${personalInfo.email}`} className="contact-value contact-link">
                   {personalInfo.email}
                 </a>
@@ -53,9 +53,11 @@ const Contact = () => {
         </div>
 
         <div className="download-card card">
-          <h3 className="card-title">Download CV</h3>
+          <h3 className="card-title">{lang === 'da' ? 'Download CV' : 'Download CV'}</h3>
           <p className="download-description">
-            Download mit CV som PDF eller print denne side direkte fra din browser.
+            {lang === 'da'
+              ? 'Download mit CV som PDF eller print denne side direkte fra din browser.'
+              : 'Download my CV as PDF or print this page directly from your browser.'}
           </p>
           
           <button className="download-btn btn btn-primary" onClick={handlePrint}>
@@ -67,7 +69,9 @@ const Contact = () => {
 
       <div className="contact-footer">
         <p className="footer-text">
-          Tak fordi du tog dig tid til at læse mit CV. Jeg ser frem til at høre fra dig!
+          {lang === 'da'
+            ? 'Tak fordi du tog dig tid til at læse mit CV. Jeg ser frem til at høre fra dig!'
+            : 'Thank you for taking the time to read my CV. I look forward to hearing from you!'}
         </p>
       </div>
     </section>

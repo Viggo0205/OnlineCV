@@ -34,23 +34,23 @@ const Skills = ({ lang = 'da' }) => {
     <section className="skills section">
       <h2 className="section-title">
         <Code className="section-title-icon" />
-        Kompetencer
+        {lang === 'da' ? 'Kompetencer' : 'Skills'}
       </h2>
 
       {/* General Skills */}
       <div className="skills-category">
         <h3 className="category-title">
           <Settings className="category-icon" />
-          Generelle Kompetencer
+          {lang === 'da' ? 'Generelle Kompetencer' : 'General Skills'}
         </h3>
         <div className="general-skills-grid">
           {relevantSkills.generalSkills.map((category, index) => (
             <div key={index} className="general-skill-card card">
-              <h4 className="skill-category-title">{category.category}</h4>
+              <h4 className="skill-category-title">{typeof category.category === 'object' ? (category.category[lang] || category.category['da'] || Object.values(category.category)[0]) : category.category}</h4>
               <ul className="skill-list">
                 {category.skills.map((skill, skillIndex) => (
                   <li key={skillIndex} className="skill-list-item">
-                    {skill}
+                    {typeof skill === 'object' ? (skill[lang] || skill['da'] || Object.values(skill)[0]) : skill}
                   </li>
                 ))}
               </ul>
@@ -74,7 +74,7 @@ const Skills = ({ lang = 'da' }) => {
       <div className="skills-category">
         <h3 className="category-title">
           <Wrench className="category-icon" />
-          Værktøjer & Teknologier
+          {lang === 'da' ? 'Værktøjer & Teknologier' : 'Tools & Technologies'}
         </h3>
         <div className="tools-grid">
           {programmingSkills.tools.map((tool, index) => (

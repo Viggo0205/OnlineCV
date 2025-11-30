@@ -26,14 +26,14 @@ const Header = ({ lang = 'da', setLang }) => {
           </div>
           <div className="profile-info">
             <h1 className="profile-name">{personalInfo.name}</h1>
-            <h2 className="profile-title">{personalInfo.title}</h2>
-            <p className="profile-summary">{cvData.personalProfile.description[lang]}</p>
+            <h2 className="profile-title">{typeof personalInfo.title === 'object' ? (personalInfo.title[lang] || personalInfo.title['da']) : personalInfo.title}</h2>
+            <p className="profile-summary">{typeof personalInfo.summary === 'object' ? (personalInfo.summary[lang] || personalInfo.summary['da']) : personalInfo.summary}</p>
           </div>
         </div>
         <div className="contact-info">
           <div className="contact-item">
             <MapPin size={18} className="contact-icon" />
-            <span>{personalInfo.address}</span>
+            <span>{typeof personalInfo.address === 'object' ? (personalInfo.address[lang] || personalInfo.address['da']) : personalInfo.address}</span>
           </div>
           <div className="contact-item">
             <Phone size={18} className="contact-icon" />

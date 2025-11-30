@@ -3,20 +3,20 @@ import { Briefcase, Calendar } from 'lucide-react'
 import cvData from '../data/cvData'
 import './Experience.css'
 
-const Experience = () => {
+const Experience = ({ lang = 'en' }) => {
   const { experience } = cvData
 
   return (
     <section className="experience section">
       <h2 className="section-title">
         <Briefcase className="section-title-icon" />
-        Erfaring
+        {lang === 'da' ? 'Erfaring' : 'Experience'}
       </h2>
       <div className="experience-cards">
         {experience.map((job) => (
           <div key={job.id} className="profile-card experience-card">
             <div className="profile-card-title" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
-              {job.title}
+              {typeof job.title === 'object' ? (job.title[lang] || job.title['da'] || Object.values(job.title)[0]) : job.title}
             </div>
             <div className="company-name" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
               <a href="#" style={{color: '#2979ff', textDecoration: 'underline', textAlign: 'left'}}>{job.company}</a>
@@ -25,11 +25,15 @@ const Experience = () => {
               <Calendar size={16} style={{marginRight: '0.5em'}} />
               {job.period}
             </div>
-            <div className="job-description" style={{marginBottom: '1rem', textAlign: 'left'}}>{job.description}</div>
+            <div className="job-description" style={{marginBottom: '1rem', textAlign: 'left'}}>
+              {typeof job.description === 'object' ? (job.description[lang] || job.description['da'] || Object.values(job.description)[0]) : job.description}
+            </div>
             {job.courses && (
               <ul className="course-list" style={{marginBottom: '0.5rem', textAlign: 'left'}}>
                 {job.courses.map((course, courseIndex) => (
-                  <li key={courseIndex} className="course-item" style={{color: 'var(--text-primary)', fontSize: '1rem', textAlign: 'left'}}>{course}</li>
+                  <li key={courseIndex} className="course-item" style={{color: 'var(--text-primary)', fontSize: '1rem', textAlign: 'left'}}>
+                    {typeof course === 'object' ? (course[lang] || course['da'] || Object.values(course)[0]) : course}
+                  </li>
                 ))}
               </ul>
             )}
@@ -46,11 +50,13 @@ const Experience = () => {
             )}
             {job.achievements && (
               <div className="achievements">
-                <h4 className="achievements-title" style={{textAlign: 'left'}}>Resultater & Erfaringer:</h4>
+                <h4 className="achievements-title" style={{textAlign: 'left'}}>
+                  {lang === 'da' ? 'Resultater & Erfaringer:' : 'Results & Experience:'}
+                </h4>
                 <ul className="achievements-list" style={{textAlign: 'left'}}>
                   {job.achievements.map((achievement, achIndex) => (
                     <li key={achIndex} className="achievement-item" style={{textAlign: 'left'}}>
-                      {achievement}
+                      {typeof achievement === 'object' ? (achievement[lang] || achievement['da'] || Object.values(achievement)[0]) : achievement}
                     </li>
                   ))}
                 </ul>
