@@ -70,11 +70,8 @@
   transition: all var(--transition-fast);
   position: relative;
   white-space: nowrap;
-    .nav-brand {
-      order: 1;
-      margin-left: 0;
-      padding-right: var(--spacing-xxl);
-.nav-link:hover {
+}
+ .nav-link:hover {
   color: var(--primary-color);
   background-color: var(--bg-secondary);
   transform: translateY(-1px);
@@ -198,6 +195,8 @@
     font-weight: 600;
     color: var(--text-primary);
     letter-spacing: 0.5px;
+  }
+
   .nav-list {
     order: 3;
     justify-content: center;
