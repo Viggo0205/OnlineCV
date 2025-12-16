@@ -16,11 +16,14 @@ function App() {
   const [theme, setTheme] = useState('light')
   const [lang, setLang] = useState('da')
 
-  // Load saved theme from localStorage
+  // Load saved theme and language from localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem('cv-theme') || 'light'
     setTheme(savedTheme)
     document.documentElement.setAttribute('data-theme', savedTheme)
+    
+    const savedLang = localStorage.getItem('cv-lang') || 'da'
+    setLang(savedLang)
   }, [])
 
   // Toggle theme

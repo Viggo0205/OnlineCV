@@ -20,31 +20,45 @@ const styles = StyleSheet.create({
       marginVertical: 6,
     },
   page: {
-    flexDirection: "row",
-    backgroundColor: "#F7F9FA",
+    flexDirection: "column",
+    backgroundColor: "#FFFFFF",
     fontFamily: "Helvetica",
     fontSize: 10,
-    padding: 0,
+    padding: 40,
+    paddingTop: 30,
   },
-  leftColumn: {
-    width: "32%",
-    backgroundColor: "#dbe6ea",
-    padding: 16,
-    paddingTop: 18,
-    alignItems: "center",
+  header: {
+    marginBottom: 16,
+    borderBottomWidth: 2,
+    borderBottomColor: "#2a4a6a",
+    paddingBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
   },
-  rightColumn: {
-    width: "68%",
-    backgroundColor: "#fff",
-    padding: 30,
-    paddingLeft: 40,
+  headerText: {
+    flex: 1,
   },
   avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 84,
+    height: 84,
+    objectFit: "contain",
+  },
+  contactInfo: {
+    fontSize: 9,
+    color: "#555",
     marginBottom: 16,
-    objectFit: "cover",
+  },
+  skillsSection: {
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: "#f5f5f5",
+    borderRadius: 4,
+  },
+  skillsText: {
+    fontSize: 9,
+    lineHeight: 1.6,
+    color: "#222",
   },
   name: {
     fontSize: 20,
@@ -140,74 +154,69 @@ const CVDocument = ({ data }) => {
     experience: { da: 'Erfaring', en: 'Experience' }
   };
   const lang = data.lang || 'da';
+  
+  // Create skills string for ATS parsing
+  const skillsString = data.technicalSkills.join(', ');
+  
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* Left Column */}
-        <View style={styles.leftColumn}>
+        {/* Header with photo, name and contact */}
+        <View style={styles.header}>
           {data.avatar && (
             <Image src={data.avatar} style={styles.avatar} />
           )}
-          <Text style={styles.sectionTitle}>{titles.contact[lang]}</Text>
-          <Text style={styles.contactText}>{titles.phone[lang]}: {data.phone}</Text>
-          <Text style={styles.contactText}>{titles.email[lang]}: {data.email}</Text>
-          <Text style={styles.contactText}>{titles.address[lang]}: {data.address}</Text>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.links[lang]}</Text>
-          <Text style={styles.contactText}>{titles.linkedin[lang]}: {data.linkedin}</Text>
-          <Text style={styles.contactText}>{titles.github[lang]}: https://github.com/Viggo0205</Text>
-          <Text style={styles.contactText}>{titles.onlinecv[lang]}: https://viggo0205.github.io/OnlineCV/</Text>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.keySkills[lang]}</Text>
-          <View style={styles.skillList}>
-            {data.keySkills.map((skill, i) => (
-              <Text key={i} style={styles.skillItem}>• {skill}</Text>
-            ))}
-          </View>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.technicalSkills[lang]}</Text>
-          <View style={styles.skillList}>
-            {data.technicalSkills.map((skill, i) => (
-              <Text key={i} style={styles.skillItem}>• {skill}</Text>
-            ))}
+          <View style={styles.headerText}>
+            <Text style={styles.name}>{data.name}</Text>
+            <Text style={styles.title}>{data.title}</Text>
           </View>
         </View>
+        
+        <View style={styles.contactInfo}>
+          <Text>{titles.email[lang]}: {data.email} | {titles.phone[lang]}: +45 {data.phone}</Text>
+          <Text>LinkedIn: {data.linkedin}</Text>
+          <Text>GitHub: https://github.com/Viggo0205 | OnlineCV: https://viggo0205.github.io/OnlineCV/</Text>
+        </View>
 
-        {/* Right Column */}
-        <View style={styles.rightColumn}>
-          <Text style={styles.name}>{data.name}</Text>
-          <Text style={styles.title}>{data.title}</Text>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.profileSummary[lang]}</Text>
-          <Text style={styles.summary}>{data.summary.split('.').slice(0,2).join('. ') + '.'}</Text>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.education[lang]}</Text>
-          {data.education.map((edu, i) => (
-            <View key={i} style={styles.eduBlock}>
-              <Text style={styles.eduTitle}>{edu.degree}</Text>
-              <Text style={styles.eduSub}>{edu.location}</Text>
-              <Text style={styles.eduSub}>{edu.years}</Text>
-              <Text style={styles.eduSub}>{edu.specialization}</Text>
-            </View>
-          ))}
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.keyProjects[lang]}</Text>
-          <View style={styles.skillList}>
-            <Text style={styles.skillItem}>• MultiplayerFarmington (C#, Unity): Multiplayer game with networked architecture and real-time synchronization. <Text style={{ color: '#2a4a6a' }}>github.com/Viggo0205/MultiplayerFarmington</Text></Text>
-            <Text style={styles.skillItem}>• Full-Stack Applications (C#, ASP.NET): End-to-end app development (FullStackOpgave, DevOpsOpgave), RESTful APIs, CI/CD. <Text style={{ color: '#2a4a6a' }}>github.com/Viggo0205/FullStackOpgave</Text></Text>
-            <Text style={styles.skillItem}>• REST API Portfolio (C#, Python): Multiple API services, CRUD, JSON handling. <Text style={{ color: '#2a4a6a' }}>Multiple repositories</Text></Text>
-            <Text style={styles.skillItem}>• IoT Solutions (Python, Raspberry Pi): UDPBroadcaster, SenseHat integration, network protocols, hardware interfacing. <Text style={{ color: '#2a4a6a' }}>github.com/Viggo0205/UDPBroadcaster</Text></Text>
-            <Text style={styles.skillItem}>• Web Applications (HTML, CSS, JavaScript): KajakTurWebApp, WebApplikation, OnlineCV, responsive design. <Text style={{ color: '#2a4a6a' }}>github.com/Viggo0205/OnlineCV</Text></Text>
+        {/* Technical Skills Section - Prominent for ATS */}
+        <Text style={styles.sectionTitle}>{titles.technicalSkills[lang]}</Text>
+        <View style={styles.skillsSection}>
+          <Text style={styles.skillsText}>{skillsString}</Text>
+        </View>
+
+        {/* Profile Summary */}
+        <Text style={styles.sectionTitle}>{titles.profileSummary[lang]}</Text>
+        <Text style={styles.summary}>{data.summary.split('.').slice(0,2).join('. ') + '.'}</Text>
+        <View style={styles.divider} />
+        
+        {/* Experience */}
+        <Text style={styles.sectionTitle}>{titles.experience[lang]}</Text>
+        {data.experience.map((exp, i) => (
+          <View key={i} style={styles.expBlock}>
+            <Text style={styles.expTitle}>{exp.title}</Text>
+            <Text style={styles.expSub}><Text style={{ fontWeight: 'bold', color: '#2a4a6a' }}>{exp.location}</Text> | {exp.years}</Text>
           </View>
-          <View style={styles.divider} />
-          <Text style={styles.sectionTitle}>{titles.experience[lang]}</Text>
-          {data.experience.map((exp, i) => (
-            <View key={i} style={styles.expBlock}>
-              <Text style={styles.expTitle}>{exp.title}</Text>
-              <Text style={styles.expSub}><Text style={{ fontWeight: 'bold', color: '#2a4a6a' }}>{exp.location}</Text></Text>
-              <Text style={styles.expSub}>{exp.years}</Text>
-            </View>
-          ))}
+        ))}
+        <View style={styles.divider} />
+        
+        {/* Education */}
+        <Text style={styles.sectionTitle}>{titles.education[lang]}</Text>
+        {data.education.map((edu, i) => (
+          <View key={i} style={styles.eduBlock}>
+            <Text style={styles.eduTitle}>{edu.degree}</Text>
+            <Text style={styles.eduSub}>{edu.location} | {edu.years}</Text>
+            <Text style={styles.eduSub}>{edu.specialization}</Text>
+          </View>
+        ))}
+        <View style={styles.divider} />
+        
+        {/* Key Projects */}
+        <Text style={styles.sectionTitle}>{titles.keyProjects[lang]}</Text>
+        <View style={styles.skillList}>
+          <Text style={styles.skillItem}>• Model Context Protocol (Python): {lang === 'da' ? 'Hovedopgave om MCP-integration til AI-værktøjer og protokoller.' : 'Final thesis on MCP integration for AI tools and protocols.'}</Text>
+          <Text style={styles.skillItem}>• MultiplayerFarmington (C#, Unity): {lang === 'da' ? 'Multiplayer farming-spil med netværksarkitektur.' : 'Multiplayer farming game with networked architecture.'}</Text>
+          <Text style={styles.skillItem}>• Full-Stack Applications (C#, ASP.NET): {lang === 'da' ? 'End-to-end appudvikling med RESTful APIs og CI/CD.' : 'End-to-end app development with RESTful APIs and CI/CD.'}</Text>
+          <Text style={styles.skillItem}>• OnlineCV (React, Vite): {lang === 'da' ? 'Interaktivt portfolio-website med moderne frontend-teknologier.' : 'Interactive portfolio website with modern frontend technologies.'}</Text>
         </View>
       </Page>
     </Document>
@@ -218,26 +227,31 @@ const CVDocument = ({ data }) => {
 
 import { Download } from 'lucide-react';
 
-const CVPDFExport = ({ cvData }) => (
-  <PDFDownloadLink
-    document={<CVDocument data={cvData} />}
-    fileName="CV.pdf"
-    className="btn btn-outline"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '0.5em',
-      textDecoration: 'none',
-      height: '40px', // Match other nav button height
-      minHeight: '40px',
-      padding: '0 1em',
-      boxSizing: 'border-box',
-      verticalAlign: 'middle'
-    }}
-  >
-    <Download size={16} />
-    <span>Download PDF</span>
-  </PDFDownloadLink>
-);
+const CVPDFExport = ({ cvData }) => {
+  const lang = cvData.lang || 'da';
+  const buttonText = lang === 'en' ? 'Download PDF' : 'Download PDF';
+  
+  return (
+    <PDFDownloadLink
+      document={<CVDocument data={{...cvData, lang: lang}} />}
+      fileName={`CV_${lang}.pdf`}
+      className="btn btn-outline"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.5em',
+        textDecoration: 'none',
+        height: '40px', // Match other nav button height
+        minHeight: '40px',
+        padding: '0 1em',
+        boxSizing: 'border-box',
+        verticalAlign: 'middle'
+      }}
+    >
+      <Download size={16} />
+      <span>{buttonText}</span>
+    </PDFDownloadLink>
+  );
+};
 
 export default CVPDFExport;

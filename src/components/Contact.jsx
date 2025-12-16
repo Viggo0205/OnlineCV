@@ -8,8 +8,6 @@ import './Contact.css'
 const Contact = ({ lang = 'da' }) => {
   const { personalInfo } = cvData
 
-
-
   return (
     <section id="contact" className="contact section">
       <h2 className="section-title">
@@ -61,6 +59,7 @@ const Contact = ({ lang = 'da' }) => {
           </p>
           <div style={{ marginTop: '1rem' }}>
             <CVPDFExport
+              key={lang} // Force complete remount when language changes
               cvData={{
                 name: cvData.personalInfo.name,
                 title: typeof cvData.personalInfo.title === 'object' ? (cvData.personalInfo.title[lang] || cvData.personalInfo.title['da']) : cvData.personalInfo.title,
@@ -78,16 +77,22 @@ const Contact = ({ lang = 'da' }) => {
                 summary: typeof cvData.personalInfo.summary === 'object' ? (cvData.personalInfo.summary[lang] || cvData.personalInfo.summary['da']) : cvData.personalInfo.summary,
                 education: [
                   {
-                    degree: 'GameIT College',
+                    degree: lang === 'da' ? 'GameIT College' : 'GameIT College',
                     location: 'Viden Djurs',
                     years: '2015-2018',
-                    specialization: 'Game Development & IT'
+                    specialization: lang === 'da' ? 'Spiludvikling & IT' : 'Game Development & IT'
                   },
                   {
-                    degree: 'Bachelor of Science in Cyber Technology',
+                    degree: lang === 'da' ? 'Bachelor i Cyber Teknologi' : 'Bachelor of Science in Cyber Technology',
                     location: 'DTU',
                     years: '2019-2022',
-                    specialization: 'Programming, Software, Networks, Hardware'
+                    specialization: lang === 'da' ? 'Programmering, Software, Netværk, Hardware' : 'Programming, Software, Networks, Hardware'
+                  },
+                  {
+                    degree: lang === 'da' ? 'Datamatiker' : 'Computer Science AP',
+                    location: 'Zealand',
+                    years: lang === 'da' ? '2023– (igangværende)' : '2023– (ongoing)',
+                    specialization: lang === 'da' ? 'Softwareudvikling' : 'Software Development'
                   }
                 ],
                 experience: cvData.experience.map(exp => ({

@@ -25,9 +25,25 @@ function chunkArray(array, size) {
 }
 
 function SkillsCarousel({ languages }) {
-  const pageSize = 3;
-  const slides = chunkArray(languages, pageSize);
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Responsive page size: 1 on mobile, 3 on desktop
+  const [pageSize, setPageSize] = useState(window.innerWidth < 768 ? 1 : 3);
+  
+  React.useEffect(() => {
+    const handleResize = () => {
+      const newPageSize = window.innerWidth < 768 ? 1 : 3;
+      if (newPageSize !== pageSize) {
+        setPageSize(newPageSize);
+        setActiveIndex(0); // Reset to first slide on resize
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [pageSize]);
+  
+  const slides = chunkArray(languages, pageSize);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -38,12 +54,12 @@ function SkillsCarousel({ languages }) {
         pause={false}
         activeIndex={activeIndex}
         onSelect={setActiveIndex}
-        nextIcon={<span style={{ fontSize: 44, fontWeight: 700, marginLeft: '6rem', color: 'var(--carousel-arrow-color)' }}>&#8250;</span>}
-        prevIcon={<span style={{ fontSize: 44, fontWeight: 700, marginRight: '6rem', color: 'var(--carousel-arrow-color)' }}>&#8249;</span>}
+        nextIcon={<span style={{ fontSize: 44, fontWeight: 700, marginLeft: window.innerWidth < 768 ? '2rem' : '6rem', color: 'var(--carousel-arrow-color)' }}>&#8250;</span>}
+        prevIcon={<span style={{ fontSize: 44, fontWeight: 700, marginRight: window.innerWidth < 768 ? '2rem' : '6rem', color: 'var(--carousel-arrow-color)' }}>&#8249;</span>}
       >
         {slides.map((slide, idx) => (
           <Carousel.Item key={'slide-' + idx}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', minHeight: '220px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: window.innerWidth < 768 ? '1rem' : '2rem', minHeight: '220px', padding: '0 1rem' }}>
               {slide.map((langObj, langIdx) => {
                 const logoSrc = logoMap[langObj.name] ? `${import.meta.env.BASE_URL}${logoMap[langObj.name]}` : null;
                 return (

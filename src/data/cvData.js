@@ -162,7 +162,7 @@ export const cvData = {
         { da: "Introduktion til cyberteknologi", en: "Introduction to Cyber Technology" },
         { da: "Ingeniørfagets videnskab", en: "Engineering Science" },
         { da: "Digital hardwaredesign", en: "Digital Hardware Design" },
-        { da: "Avancerede datanet", en: "Advanced Data Networks" },
+        { da: "Avancerede datanet og cybersikkerhed", en: "Advanced Data Networks and Cybersecurity" },
         { da: "Software engineering", en: "Software Engineering" },
         { da: "Introduktion til digital teknologi", en: "Introduction to Digital Technology" },
         { da: "Teknologier til mobilkommunikation", en: "Technologies for Mobile Communication" },
@@ -172,20 +172,25 @@ export const cvData = {
     },
     {
       id: 1,
-      title: { da: "Praktikforløb & eksamensprojekter", en: "Internship & Exam Projects" },
+      title: { da: "Uddannelse ved Zealand", en: "Education at Zealand" },
       company: "Zealand",
       period: "2023– (ongoing)",
       description: {
-        da: "Gennem arbejdet med diverse eksamensprojekter og praktikforløb har jeg opnået praktisk erfaring med forskellige teknologier og udviklingsprincipper.",
-        en: "Through various exam projects and internships, I have gained practical experience with different technologies and development principles."
+        da: "Gennem min datamatiker-uddannelse ved Zealand har jeg gennemført en række kurser, der har styrket mine kompetencer inden for softwareudvikling, databaser, systemudvikling og programmering.",
+        en: "Through my Computer Science education at Zealand, I completed a series of courses that strengthened my skills in software development, databases, system development, and programming."
       },
-      achievements: [
-        { da: "Udviklet web-applikationer med moderne frameworks", en: "Developed web applications with modern frameworks" },
-        { da: "Implementeret database løsninger og API'er", en: "Implemented database solutions and APIs" },
-        { da: "Anvendt diverse udviklingsmetoder i teamprojekter", en: "Applied various development methods in team projects" },
-        { da: "Opbygget erfaring med cloud-platforme som Azure", en: "Gained experience with cloud platforms like Azure" }
+      courses: [
+        { da: "Første årsprøven", en: "First Year Exam" },
+        { da: "Systemudviklingsprøven", en: "System Development Exam" },
+        { da: "Programmeringsprøven", en: "Programming Exam" },
+        { da: "Game Development - Unity", en: "Game Development - Unity" },
+        { da: "SQL Databaser", en: "SQL Databases" },
+        { da: "IT-sikkerhed", en: "IT Security" },
+        { da: "Valgfagsprøven", en: "Elective Course Exam" },
+        { da: "Praktikprøven", en: "Internship Exam" },
+        { da: "Hovedopgave: Model Context Protocol (MCP) - Integration af AI-værktøjer og protokoller", en: "Final Thesis: Model Context Protocol (MCP) - AI tool integration and protocol design" }
       ],
-      technologies: ["C#", "JavaScript", "SQL", "Azure", "Entity Framework"]
+      technologies: ["C#", "JavaScript", "SQL", "Azure", "Entity Framework", "Vue.js"]
     },
     {
       id: 2,

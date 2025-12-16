@@ -96,33 +96,38 @@ const Navigation = ({ lang = 'da', setLang }) => {
             summary: typeof cvData.personalInfo.summary === 'object' ? (cvData.personalInfo.summary[lang] || cvData.personalInfo.summary['da']) : cvData.personalInfo.summary,
             education: [
               {
-                degree: 'GameIT College',
+                degree: lang === 'da' ? 'GameIT College' : 'GameIT College',
                 location: 'Viden Djurs',
                 years: '2015-2018',
-                specialization: 'Game Development & IT'
+                specialization: lang === 'da' ? 'Spiludvikling & IT' : 'Game Development & IT'
               },
               {
-                degree: 'Bachelor of Science in Cyber Technology',
+                degree: lang === 'da' ? 'Bachelor i Cyber Teknologi' : 'Bachelor of Science in Cyber Technology',
                 location: 'DTU',
                 years: '2019-2022',
-                specialization: 'Programming, Software, Networks, Hardware'
+                specialization: lang === 'da' ? 'Programmering, Software, Netværk, Hardware' : 'Programming, Software, Networks, Hardware'
               },
               {
-                degree: 'Datamatiker',
+                degree: lang === 'da' ? 'Datamatiker' : 'Computer Science AP',
                 location: 'Zealand',
-                years: '2023-ongoing',
-                specialization: 'Software Development'
+                years: lang === 'da' ? '2023– (igangværende)' : '2023– (ongoing)',
+                specialization: lang === 'da' ? 'Softwareudvikling' : 'Software Development'
               }
             ],
             experience: cvData.experience.map(exp => ({
               title: typeof exp.title === 'object' ? (exp.title[lang] || exp.title['da'] || Object.values(exp.title)[0]) : exp.title,
               location: exp.company,
               years: exp.period
-            }))
+            })),
+            lang: lang
           }} />
           <button
             className="btn btn-primary"
-            onClick={() => setLang(lang === 'da' ? 'en' : 'da')}
+            onClick={() => {
+              const newLang = lang === 'da' ? 'en' : 'da'
+              setLang(newLang)
+              localStorage.setItem('cv-lang', newLang)
+            }}
             style={{ fontWeight: 600 }}
           >
             {lang === 'da' ? 'English' : 'Dansk'}
