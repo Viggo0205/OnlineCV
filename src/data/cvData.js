@@ -175,7 +175,7 @@ export const cvData = {
       id: 1,
       title: { da: "Uddannelse ved Zealand", en: "Education at Zealand" },
       company: "Zealand",
-      period: "2023– (ongoing)",
+      period: "2023– 2026",
       description: {
         da: "Gennem min datamatiker-uddannelse ved Zealand har jeg gennemført en række kurser, der har styrket mine kompetencer inden for softwareudvikling, databaser, systemudvikling og programmering.",
         en: "Through my Computer Science education at Zealand, I completed a series of courses that strengthened my skills in software development, databases, system development, and programming."
