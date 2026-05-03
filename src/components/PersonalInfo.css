@@ -1,15 +1,15 @@
 /* Responsive layout for highlight cards */
-.profile-card-row {
+.header .profile-card-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  gap: 2.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.profile-card {
+.header .profile-card {
   width: 100%;
   min-width: 0;
   max-width: none;
@@ -18,60 +18,63 @@
 }
 
 @media (max-width: 900px) {
-  .profile-card-row {
+  .header .profile-card-row {
     gap: 1.5rem;
   }
-  .profile-card {
+  .header .profile-card {
     min-width: 220px;
     max-width: 100%;
   }
 }
 
 @media (max-width: 700px) {
-  .profile-card-row {
+  .header .profile-card-row {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
   }
-  .profile-card {
+  .header .profile-card {
     min-width: 180px;
     max-width: 95vw;
   }
 }
 /* Modern card style for profile sections */
-.profile-card {
-  background: var(--bg-secondary, #23293a);
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  padding: 2rem 1.5rem;
-  margin: 1rem;
+.header .profile-card {
+  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1.25rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 220px;
   max-width: 320px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.profile-card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-  transform: translateY(-4px) scale(1.03);
+.header .profile-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
-.profile-card-title {
-  color: #000;
-  font-size: 1.25rem;
+.header .profile-card-title {
+  color: var(--text-primary);
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  text-align: left;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+  text-align: center;
 }
 
-.profile-card-text {
-  color: var(--text-primary) !important;
-  font-size: 1rem;
+.header .profile-card-text {
+  color: var(--text-secondary) !important;
+  font-size: 1.05rem;
+  line-height: 1.6;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 @media print {
   .personal-info, .personal-content, .personal-description, .interests-section, .personal-highlights {

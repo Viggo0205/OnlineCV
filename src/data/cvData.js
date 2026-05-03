@@ -3,8 +3,8 @@ export const cvData = {
   personalInfo: {
     name: "Victor Tadeusz Ulstrup Olszowski",
     title: {
-      da: "Full Stack Udvikler & Systemdesigner",
-      en: "Full Stack Developer & System Designer"
+      da: "Junior Softwareudvikler",
+      en: "Junior Software Developer"
     },
     address: {
       da: "Møllehusene 16, 1, 51",
@@ -13,8 +13,8 @@ export const cvData = {
     phone: "29176851",
     email: "Victor.olszowski@gmail.com",
     summary: {
-      da: "Jeg er en engageret og energisk person, der trives både selvstændigt og i teams. Jeg har en stor passion for teknologi og nyder at tage nye udfordringer op inden for programmering, elektronik og systemudvikling. Min nysgerrighed driver mig til konstant at udvikle mine færdigheder og udforske nye teknologier.",
-      en: "I am an engaged and energetic person who thrives both independently and in teams. I have a great passion for technology and enjoy taking on new challenges in programming, electronics, and system development. My curiosity drives me to constantly develop my skills and explore new technologies."
+      da: "Nyuddannet datamatiker med praktisk erfaring i backend-udvikling fra 10 ugers praktikforløb hos Kruso, hvor jeg designede og implementerede backend-strukturer med .NET, C# og Umbraco. Solid baggrund i moderne programmeringssprog og teknologier gennem både erhvervserfaring og akademiske projekter. Trives i teams og motiveret af at skrive vedligeholdelsesvenlig kode.",
+      en: "Recently graduated Computer Science professional with practical backend development experience from a 10-week internship at Kruso, where I designed and implemented backend structures using .NET, C# and Umbraco. Solid foundation in modern programming languages and technologies through both professional and academic projects. Thrives in teams and motivated by writing maintainable code."
     },
     github: "https://github.com/Viggo0205",
     linkedin: "https://www.linkedin.com/in/victor-olszowski-56a40634b/"
@@ -32,6 +32,7 @@ export const cvData = {
         ]
       },
       {
+        category: { da: "Software & Sikkerhed", en: "Software & Security" },
           skills: [
             { da: "Objektorienteret programmering", en: "Object-oriented programming" },
           { da: "Kryptering", en: "Encryption" },
@@ -61,16 +62,16 @@ export const cvData = {
 
   programmingSkills: {
     languages: [
-      { name: "C#", level: 90, experience: "Avanceret" },
-      { name: "SQL", level: 85, experience: "Avanceret" },
-      { name: "Java", level: 80, experience: "God erfaring" },
-      { name: "JavaScript", level: 85, experience: "Avanceret" },
-      { name: "Python", level: 75, experience: "God erfaring" },
-      { name: "HTML", level: 95, experience: "Ekspert" },
-      { name: "Matlab", level: 70, experience: "Grundlæggende+" },
-      { name: "C++", level: 60, experience: "Grundlæggende" },
-      { name: "R", level: 50, experience: "Grundlæggende" },
-      { name: "C", level: 55, experience: "Grundlæggende" }
+      { name: "C#", level: 75, experience: "God praktisk erfaring" },
+      { name: "SQL", level: 70, experience: "God erfaring" },
+      { name: "JavaScript", level: 65, experience: "Funktionel arbejdskendskab" },
+      { name: "Java", level: 60, experience: "God erfaring" },
+      { name: "Python", level: 55, experience: "Grundlæggende+" },
+      { name: "HTML/CSS", level: 70, experience: "Solid grundlag" },
+      { name: "Matlab", level: 45, experience: "Grundlæggende" },
+      { name: "C++", level: 40, experience: "Grundlæggende" },
+      { name: "R", level: 35, experience: "Grundlæggende" },
+      { name: "C", level: 40, experience: "Grundlæggende" }
     ],
     tools: [
       "Visual Studio",
@@ -115,8 +116,8 @@ export const cvData = {
 
   personalProfile: {
     description: {
-      da: "Jeg er en engageret og energisk person, der trives både selvstændigt og i teams. Jeg har en stor passion for teknologi og nyder at tage nye udfordringer op inden for programmering, elektronik og systemudvikling. Min nysgerrighed driver mig til konstant at udvikle mine færdigheder og udforske nye teknologier.",
-      en: "I am an engaged and energetic person who thrives both independently and in teams. I have a great passion for technology and enjoy taking on new challenges in programming, electronics, and system development. My curiosity drives me to constantly develop my skills and explore new technologies."
+      da: "Nyuddannet datamatiker med praktisk erfaring i backend-udvikling fra 10 ugers praktikforløb hos Kruso, hvor jeg designede og implementerede backend-strukturer med .NET, C# og Umbraco. Solid baggrund i moderne programmeringssprog og teknologier gennem både erhvervserfaring og akademiske projekter. Trives i teams og motiveret af at skrive vedligeholdelsesvenlig kode.",
+      en: "Recently graduated Computer Science professional with practical backend development experience from a 10-week internship at Kruso, where I designed and implemented backend structures using .NET, C# and Umbraco. Solid foundation in modern programming languages and technologies through both professional and academic projects. Thrives in teams and motivated by writing maintainable code."
     },
     interests: {
       da: [
@@ -150,11 +151,11 @@ export const cvData = {
     {
       id: 3,
       title: { da: "DTU-kurser", en: "DTU Courses" },
-      company: "Danmarks Tekniske Universitet (DTU)",
+      company: "Danmarks Tekniske Universitet (DTU) - 100 ECTS points (not completed)",
       period: "2019-2022",
       description: {
-        da: "Gennem min bacheloruddannelse i Cyberteknologi har jeg bestået en række kurser, der har givet mig stærke kompetencer inden for programmering, softwareudvikling, netværk, hardwaredesign og systemudvikling.",
-        en: "During my bachelor's degree in Cyber Technology, I completed a series of courses that gave me strong skills in programming, software development, networking, hardware design, and system development."
+        da: "Gennem min bacheloruddannelse i Cyberteknologi bestod jeg en række kurser svarende til 100 ECTS, som gav mig stærke kompetencer inden for programmering, softwareudvikling, netværk, hardwaredesign og systemudvikling. Uddannelsen blev ikke fuldført.",
+        en: "During my bachelor's degree in Cyber Technology, I completed courses corresponding to 100 ECTS, which gave me strong skills in programming, software development, networking, hardware design, and system development. The degree was not completed."
       },
       courses: [
         { da: "Indledende programmering", en: "Introductory Programming" },
@@ -198,17 +199,18 @@ export const cvData = {
       company: "Kruso",
       period: "Efterår 2025 (10 uger)",
       description: {
-        da: "I mit 10-ugers praktikforløb hos Kruso i efteråret 2025 arbejdede jeg med backend-udvikling af et internt værktøj, hvor jeg anvendte Umbraco og .NET 9.0. Jeg var ansvarlig for at designe og implementere hele strukturen af backenden – fra API-endpoints til service- og repository-lag – samt integrationer, så værktøjet kunne understøtte virksomhedens interne processer effektivt. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
-        en: "During my 10-week internship at Kruso in the fall of 2025, I worked on backend development of an internal tool using Umbraco and .NET 9.0. I was responsible for designing and implementing the entire backend structure – from API endpoints to service and repository layers – as well as integrations to support the company's internal processes efficiently. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
+        da: "I mit 10-ugers praktikforløb hos Kruso i efteråret 2025 arbejdede jeg med backend-udvikling af et internt værktøj, hvor jeg anvendte Umbraco og .NET. Jeg var ansvarlig for at designe og implementere hele strukturen af backenden – fra API-endpoints til service- og repository-lag – samt integrationer, så værktøjet kunne understøtte virksomhedens interne processer effektivt. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
+        en: "During my 10-week internship at Kruso in the fall of 2025, I worked on backend development of an internal tool using Umbraco and .NET. I was responsible for designing and implementing the entire backend structure – from API endpoints to service and repository layers – as well as integrations to support the company's internal processes efficiently. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
       },
       achievements: [
-        { da: "Design og implementering af backend med .NET 9.0", en: "Design and implementation of backend with .NET 9.0" },
-        { da: "Integration af Umbraco som CMS", en: "Integration of Umbraco as CMS" },
-        { da: "Design og implementering af backend-struktur fra API til service/repo-lag", en: "Design and implementation of backend structure from API to service/repo layer" },
-        { da: "Udvikling af API-endpoints og datamodeller", en: "Development of API endpoints and data models" },
-        { da: "Samarbejde med frontend-udviklere og brugere", en: "Collaboration with frontend developers and users" }
+        { da: "Designede og implementerede RESTful API med 8+ endpoints til intern datamanipulation", en: "Designed and implemented RESTful API with 8+ endpoints for internal data manipulation" },
+        { da: "Udviklede repository pattern-arkitektur med Entity Framework Core og SQLite", en: "Developed repository pattern architecture with Entity Framework Core and SQLite" },
+        { da: "Integrerede backend-funktionalitet med Umbraco 13 CMS til content management", en: "Integrated backend functionality with Umbraco 13 CMS for content management" },
+        { da: "Deltog i code reviews og agile udviklingsprocesser med Git", en: "Participated in code reviews and agile development processes with Git" },
+        { da: "Implementerede datamodeller, DTOs og service-lag efter moderne arkitekturprincipper", en: "Implemented data models, DTOs and service layers following modern architecture principles" },
+        { da: "Håndterede validering og fejlhåndtering på API-niveau", en: "Handled validation and error handling at API level" }
       ],
-      technologies: [".NET 9.0", "Umbraco", "C#", "SQLite"]
+      technologies: [".NET", "Umbraco", "C#", "SQLite"]
     }
   ],
 
@@ -216,58 +218,58 @@ export const cvData = {
     {
       id: 1,
       title: "MultiplayerFarmington",
-      description: "Multiplayer farming game with networked architecture and real-time synchronization.",
-      technologies: ["C#", "Unity", "Networking"],
+      description: "Multiplayer farming game udviklet i Unity med netværksarkitektur. Designede og implementerede server-client kommunikation med real-time synkronisering af game state mellem spillere.",
+      technologies: ["C#", "Unity", "TCP/UDP networking", "Client-server arkitektur"],
       github: "https://github.com/Viggo0205/MultiplayerFarmington"
     },
     {
       id: 2,
       title: "FullStackOpgave",
-      description: "Full-stack application with RESTful APIs, database integration, and modern development practices.",
-      technologies: ["C#", "ASP.NET", "Database"],
+      description: "ASP.NET Core applikation med Entity Framework, SQL database og REST API. Implementerer CRUD-operationer, DTOs og service-lag med authentication og data validation.",
+      technologies: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server", "REST API"],
       github: "https://github.com/Viggo0205/FullStackOpgave"
     },
     {
       id: 3,
       title: "DevOpsOpgave",
-      description: "DevOps implementation with CI/CD, version control, and automation.",
-      technologies: ["C#", "CI/CD", "Automation"],
+      description: "DevOps-projekt med implementering af CI/CD pipelines, automatiseret testing og deployment. Arbejde med versionsstyring og moderne udviklingspraksis.",
+      technologies: ["C#", "CI/CD", "Git", "Automated Testing"],
       github: "https://github.com/Viggo0205/DevOpsOpgave"
     },
     {
       id: 4,
       title: "OnlineCV",
-      description: "Interactive portfolio website showcasing projects and experience.",
-      technologies: ["HTML", "CSS", "JavaScript"],
+      description: "Interaktivt portfolio website bygget med React og Vite. Responsivt design med PDF-eksport funktionalitet til CV-generering.",
+      technologies: ["React", "JavaScript", "HTML", "CSS", "Vite"],
       github: "https://github.com/Viggo0205/OnlineCV"
     },
     {
       id: 5,
-      title: "Hovedopgave",
-      description: "Recent Python development project demonstrating programming proficiency.",
-      technologies: ["Python", "Software Engineering"],
+      title: "Hovedopgave - Model Context Protocol",
+      description: "Afsluttende hovedopgave om Model Context Protocol (MCP). Design og implementering af AI-integrationsprotokoller med fokus på sikkerhed, dataflow og API-design.",
+      technologies: ["Python", "API Design", "Protocol Design", "AI Integration"],
       github: "https://github.com/Viggo0205/Hovedopgave"
     },
     {
       id: 6,
       title: "RESTful API Suite",
-      description: "Multiple RESTful API services demonstrating backend development expertise.",
-      technologies: ["C#", "Python", "REST", "HTTP"],
-        github: "https://github.com/Viggo0205/RestKajakTur"
+      description: "Flere RESTful API services som demonstrerer backend-udviklingskompetencer. Implementering af HTTP-metoder, routing, og data-håndtering.",
+      technologies: ["C#", "Python", "REST API", "HTTP", "JSON"],
+      github: "https://github.com/Viggo0205/RestKajakTur"
     },
     {
       id: 7,
       title: "IoT & Embedded Systems",
-      description: "IoT solutions including UDPBroadcaster, SenseHat integration, and Raspberry Pi automation projects.",
-      technologies: ["Python", "Raspberry Pi", "Network Protocols"],
+      description: "IoT-løsninger inklusiv UDP broadcast service, SenseHat integration og Raspberry Pi automation. Arbejde med netværksprotokoller og hardware-integration.",
+      technologies: ["Python", "Raspberry Pi", "UDP", "IoT", "Hardware Integration"],
       github: "https://github.com/Viggo0205/UDPBroadcaster"
     },
     {
       id: 8,
       title: "Web Applications",
-      description: "Multiple web applications showcasing frontend development skills and responsive design.",
-      technologies: ["HTML", "CSS", "JavaScript"],
-        github: "https://github.com/Viggo0205/KajakTurWebApp"
+      description: "Flere webapplikationer som demonstrerer frontend-udviklingskompetencer med responsivt design og brugerinteraktion.",
+      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      github: "https://github.com/Viggo0205/KajakTurWebApp"
     }
   ]
 };

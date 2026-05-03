@@ -194,7 +194,7 @@ const CVDocument = ({ data }) => {
         {data.experience.map((exp, i) => (
           <View key={i} style={styles.expBlock}>
             <Text style={styles.expTitle}>{exp.title}</Text>
-            <Text style={styles.expSub}><Text style={{ fontWeight: 'bold', color: '#2a4a6a' }}>{exp.location}</Text> | {exp.years}</Text>
+            <Text style={styles.expSub}><Text style={{ fontWeight: 'bold', color: '#2a4a6a' }}>{exp.location}</Text></Text>
           </View>
         ))}
         <View style={styles.divider} />
@@ -204,7 +204,7 @@ const CVDocument = ({ data }) => {
         {data.education.map((edu, i) => (
           <View key={i} style={styles.eduBlock}>
             <Text style={styles.eduTitle}>{edu.degree}</Text>
-            <Text style={styles.eduSub}>{edu.location} | {edu.years}</Text>
+            <Text style={styles.eduSub}>{edu.location}</Text>
             <Text style={styles.eduSub}>{edu.specialization}</Text>
           </View>
         ))}

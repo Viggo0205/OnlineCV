@@ -65,17 +65,8 @@ const Navigation = ({ lang = 'da', setLang }) => {
         </ul>
         <div className="nav-right">
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary nav-theme-btn"
             onClick={toggleTheme}
-            style={{
-              height: '40px',
-              minHeight: '40px',
-              padding: '0 1em',
-              boxSizing: 'border-box',
-              display: 'inline-flex',
-              alignItems: 'center',
-              verticalAlign: 'middle'
-            }}
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
@@ -98,37 +89,32 @@ const Navigation = ({ lang = 'da', setLang }) => {
               {
                 degree: lang === 'da' ? 'GameIT College' : 'GameIT College',
                 location: 'Viden Djurs',
-                years: '2015-2018',
                 specialization: lang === 'da' ? 'Spiludvikling & IT' : 'Game Development & IT'
               },
               {
-                degree: lang === 'da' ? 'Bachelor i Cyber Teknologi' : 'Bachelor of Science in Cyber Technology',
+                degree: lang === 'da' ? 'Bachelor i Cyber Teknologi (ikke fuldført)' : 'Bachelor of Science in Cyber Technology (not completed)',
                 location: 'DTU',
-                years: '2019-2022',
-                specialization: lang === 'da' ? 'Programmering, Software, Netværk, Hardware' : 'Programming, Software, Networks, Hardware'
+                specialization: lang === 'da' ? '100 ECTS - Programmering, Software, Netværk, Hardware' : '100 ECTS - Programming, Software, Networks, Hardware'
               },
               {
                 degree: lang === 'da' ? 'Datamatiker' : 'Computer Science AP',
                 location: 'Zealand',
-                years: lang === 'da' ? '2023– (igangværende)' : '2023– (ongoing)',
                 specialization: lang === 'da' ? 'Softwareudvikling' : 'Software Development'
               }
             ],
-            experience: cvData.experience.map(exp => ({
+            experience: cvData.experience.filter(exp => exp.id === 2).map(exp => ({
               title: typeof exp.title === 'object' ? (exp.title[lang] || exp.title['da'] || Object.values(exp.title)[0]) : exp.title,
-              location: exp.company,
-              years: exp.period
+              location: exp.company
             })),
             lang: lang
           }} />
           <button
-            className="btn btn-primary"
+            className="btn btn-primary nav-language-btn"
             onClick={() => {
               const newLang = lang === 'da' ? 'en' : 'da'
               setLang(newLang)
               localStorage.setItem('cv-lang', newLang)
             }}
-            style={{ fontWeight: 600 }}
           >
             {lang === 'da' ? 'English' : 'Dansk'}
           </button>

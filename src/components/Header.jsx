@@ -62,11 +62,11 @@ const Header = ({ lang = 'da', setLang }) => {
         </div>
       </div>
       {/* Interests horizontal row */}
-      <div className="interests-horizontal-row" style={{ display: 'flex', gap: '2rem', justifyContent: 'center', margin: '2rem 0 1.5rem 0', flexWrap: 'wrap' }}>
+      <div className="interests-horizontal-row">
         {personalProfile.interests[lang].map((interest, index) => {
           const IconComponent = interestIcons[interest] || Heart
           return (
-            <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
+            <div key={index} className="interest-pill">
               <IconComponent className="interest-icon" size={24} />
               <span className="interest-text">{interest}</span>
             </div>

@@ -99,30 +99,34 @@
   }
 }
 .navigation {
-  background: var(--bg-card);
-  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
+  padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 70px;
-  gap: var(--spacing-xl);
+  min-height: 76px;
+  gap: 1.5rem;
 }
 
 .nav-brand h2 {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: 0.5px;
+  letter-spacing: -0.03em;
+  max-width: 12ch;
+  line-height: 1.05;
 }
 
 .nav-list {
@@ -141,38 +145,40 @@
 .nav-link {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
+  gap: 0.5rem;
+  padding: 0.72rem 0.9rem;
+  border-radius: 999px;
   color: var(--text-secondary);
   text-decoration: none;
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
   transition: all var(--transition-fast);
   position: relative;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
  .nav-link:hover {
   color: var(--primary-color);
-  background-color: var(--bg-secondary);
+  background-color: rgba(255, 255, 255, 0.72);
+  border-color: rgba(17, 17, 17, 0.12);
   transform: translateY(-1px);
 }
 
 .nav-link.active {
   color: var(--primary-color);
-  background-color: var(--bg-secondary);
+  background-color: rgba(255, 255, 255, 0.76);
   box-shadow: var(--shadow-sm);
 }
 
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0.4rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
+  width: 26px;
   height: 2px;
-  background: var(--primary-color);
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
   border-radius: 1px;
 }
 
@@ -190,21 +196,21 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  background: var(--bg-secondary);
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .nav-action-btn:hover {
   color: var(--primary-color);
-  border-color: var(--primary-color);
-  background: var(--bg-card);
+  border-color: rgba(17, 17, 17, 0.14);
+  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -213,6 +219,23 @@
   background: var(--primary-color);
   color: var(--text-white);
   border-color: var(--primary-color);
+}
+
+.nav-theme-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 0.95rem;
+}
+
+.nav-language-btn {
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="dark"] .navigation,
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active,
+[data-theme="dark"] .nav-action-btn {
+  background: rgba(4, 17, 28, 0.78);
 }
 
 .nav-action-text {
@@ -224,12 +247,12 @@
   .nav-container {
     flex-wrap: wrap;
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
+    padding: 0.9rem 1rem;
     min-height: auto;
   }
 
   .nav-brand h2 {
-    font-size: var(--font-size-lg);
+    font-size: 1rem;
     color: var(--text-primary);
   }
 
@@ -242,7 +265,7 @@
   }
 
   .nav-link {
-    padding: 6px var(--spacing-xs);
+    padding: 0.6rem 0.75rem;
     font-size: var(--font-size-xs);
   }
 
@@ -265,17 +288,14 @@
 
 @media (max-width: 480px) {
   .nav-container {
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: var(--spacing-sm);
+    text-align: left;
+    gap: 0.75rem;
   }
 
   .nav-brand h2 {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: 0.5px;
+    font-size: 1rem;
+    max-width: none;
   }
 
   .nav-list {
@@ -296,10 +316,8 @@
   }
 
   .nav-action-btn {
-    flex-direction: column;
-    gap: 2px;
-    padding: 6px 4px;
-    min-width: 50px;
+    padding: 0.65rem 0.8rem;
+    min-width: 44px;
   }
 
   .nav-action-text {

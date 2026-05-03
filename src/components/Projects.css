@@ -47,7 +47,7 @@
 }
 
 .project-card {
-  background: var(--bg-secondary);
+  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
   transition: transform var(--transition-normal);
 }
 
@@ -58,12 +58,47 @@
 
 .project-header {
   margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .project-title {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.projects-description {
+  max-width: 70ch;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: var(--text-primary);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.project-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(17, 17, 17, 0.14);
+  color: var(--accent-color);
+}
+
+.project-link-icon {
+  vertical-align: middle;
 }
 
 .project-description {
@@ -111,8 +146,8 @@
 }
 
 .projects-note {
-  background: var(--bg-tertiary);
-  border-left: 4px solid var(--primary-color);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(231, 231, 231, 0.9));
+  border-left: 4px solid var(--accent-color);
   margin-top: var(--spacing-xl);
 }
 

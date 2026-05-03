@@ -36,9 +36,8 @@ const Projects = ({ lang = 'da' }) => {
                   rel="noopener noreferrer"
                   className="project-link"
                   title="View repository"
-                  style={{ marginLeft: '0.5em', verticalAlign: 'middle' }}
                 >
-                  <Github size={18} style={{ verticalAlign: 'middle' }} />
+                  <Github size={18} className="project-link-icon" />
                 </a>
               )}
             </div>

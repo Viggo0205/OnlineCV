@@ -36,7 +36,7 @@ function App() {
 
   // Main CV content (single page view)
   const renderMainCV = () => (
-    <div className="cv-container">
+    <div id="fullcv" className="cv-container">
       <Header lang={lang} setLang={setLang} />
         <div className="main-content">
           {/* Interests and highlights in the same container as header */}

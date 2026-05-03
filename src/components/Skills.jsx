@@ -44,7 +44,7 @@ const Skills = ({ lang = 'da' }) => {
           <Code className="category-icon" />
           {lang === 'da' ? 'Programmeringssprog' : 'Programming Languages'}
         </h3>
-        <div style={{ maxWidth: 420, margin: '0 auto', padding: '1.5rem 0' }}>
+        <div className="skills-carousel-shell">
           <SkillsCarousel languages={languages} />
         </div>
       </div>

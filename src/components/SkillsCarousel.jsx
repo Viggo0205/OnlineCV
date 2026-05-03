@@ -14,7 +14,7 @@ const logoMap = {
   'C': 'CLogo.png',
 };
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function chunkArray(array, size) {
   const result = [];
@@ -26,59 +26,80 @@ function chunkArray(array, size) {
 
 function SkillsCarousel({ languages }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  
-  // Responsive page size: 1 on mobile, 3 on desktop
   const [pageSize, setPageSize] = useState(window.innerWidth < 768 ? 1 : 3);
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     const handleResize = () => {
       const newPageSize = window.innerWidth < 768 ? 1 : 3;
       if (newPageSize !== pageSize) {
         setPageSize(newPageSize);
-        setActiveIndex(0); // Reset to first slide on resize
+        setActiveIndex(0);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [pageSize]);
-  
+
   const slides = chunkArray(languages, pageSize);
 
   return (
-    <div style={{ position: 'relative' }}>
-      <Carousel
-        interval={5000}
-        controls={true}
-        indicators={false}
-        pause={false}
-        activeIndex={activeIndex}
-        onSelect={setActiveIndex}
-        nextIcon={<span style={{ fontSize: 44, fontWeight: 700, marginLeft: window.innerWidth < 768 ? '2rem' : '6rem', color: 'var(--carousel-arrow-color)' }}>&#8250;</span>}
-        prevIcon={<span style={{ fontSize: 44, fontWeight: 700, marginRight: window.innerWidth < 768 ? '2rem' : '6rem', color: 'var(--carousel-arrow-color)' }}>&#8249;</span>}
-      >
-        {slides.map((slide, idx) => (
-          <Carousel.Item key={'slide-' + idx}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: window.innerWidth < 768 ? '1rem' : '2rem', minHeight: '220px', padding: '0 1rem' }}>
-              {slide.map((langObj, langIdx) => {
-                const logoSrc = logoMap[langObj.name] ? `${import.meta.env.BASE_URL}${logoMap[langObj.name]}` : null;
-                return (
-                  <div key={langObj.name + '-' + langIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minWidth: 120 }}>
-                    {logoSrc ? (
-                      <img src={logoSrc} alt={langObj.name + ' logo'} style={{ width: 80, height: 80, objectFit: 'contain', marginBottom: 16, borderRadius: '1rem', background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
-                    ) : (
-                      <div style={{ width: 80, height: 80, background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '1rem', marginBottom: 16 }}>?</div>
-                    )}
-                    <h4 style={{ color: '#2979ff', fontWeight: 600 }}>{langObj.name}</h4>
-                  </div>
-                );
-              })}
-            </div>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontWeight: 600, color: 'var(--carousel-arrow-color)' }}>
-        {activeIndex + 1} / {slides.length}
+    <div className="skills-carousel-frame">
+      <div className="skills-carousel-surface">
+        <Carousel
+          className="skills-carousel-track"
+          interval={5000}
+          controls={slides.length > 1}
+          indicators={false}
+          pause={false}
+          activeIndex={activeIndex}
+          onSelect={setActiveIndex}
+          nextIcon={<span className="skills-carousel-control-icon" aria-hidden="true">&#8250;</span>}
+          prevIcon={<span className="skills-carousel-control-icon" aria-hidden="true">&#8249;</span>}
+        >
+          {slides.map((slide, idx) => (
+            <Carousel.Item key={'slide-' + idx}>
+              <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
+                {slide.map((langObj, langIdx) => {
+                  const logoSrc = logoMap[langObj.name] ? `${import.meta.env.BASE_URL}${logoMap[langObj.name]}` : null;
+                  return (
+                    <article key={langObj.name + '-' + langIdx} className="skills-language-card">
+                      <div className="skills-language-logo-shell">
+                        {logoSrc ? (
+                          <img src={logoSrc} alt={langObj.name + ' logo'} className="skills-language-logo" />
+                        ) : (
+                          <div className="skills-language-logo-fallback">{langObj.name.slice(0, 1)}</div>
+                        )}
+                      </div>
+                      <div className="skills-language-meta">
+                        <p className="skills-language-eyebrow">Language</p>
+                        <h4 className="skills-language-name">{langObj.name}</h4>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+        <div className="skills-carousel-footer">
+          <div className="skills-carousel-page-counter">
+            <span>{String(activeIndex + 1).padStart(2, '0')}</span>
+            <span className="skills-carousel-page-separator">/</span>
+            <span>{String(slides.length).padStart(2, '0')}</span>
+          </div>
+          <div className="skills-carousel-dots" role="tablist" aria-label="Programming language slides">
+            {slides.map((_, index) => (
+              <button
+                key={`dot-${index}`}
+                type="button"
+                className={`skills-carousel-dot${index === activeIndex ? ' is-active' : ''}`}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Show slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
