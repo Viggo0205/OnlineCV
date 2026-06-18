@@ -29,29 +29,11 @@
 
 .skills-carousel-stage {
   position: relative;
-  display: grid;
-  grid-template-areas: 'stack';
   min-height: 220px;
-  overflow: hidden;
 }
 
 .skills-carousel-slide {
-  grid-area: stack;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px) scale(0.985);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease,
-    visibility 0.45s;
-  pointer-events: none;
-}
-
-.skills-carousel-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
+  display: none;
 }
 
 .skills-carousel-grid {

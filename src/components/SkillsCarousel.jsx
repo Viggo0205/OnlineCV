@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const logoMap = {
@@ -7,7 +7,6 @@ const logoMap = {
   PostgreSQL: 'SQLLogo.png',
   Java: 'Javalogo.png',
   JavaScript: 'JavaScriptLogo.png',
-  Python: 'PythonLogo.png',
   'HTML/CSS': 'HTMLLogo.webp',
   HTML: 'HTMLLogo.webp',
   Matlab: 'MatLabLogo.png',
@@ -25,12 +24,30 @@ function chunkArray(array, size) {
 }
 
 function SkillsCarousel({ languages, lang = 'da' }) {
+  const frameRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [pageSize, setPageSize] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3));
   const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const slides = chunkArray(languages, pageSize);
   const slideCount = slides.length;
+  const activeSlide = slides[activeIndex] ?? [];
+
+  useEffect(() => {
+    const node = frameRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: '120px 0px', threshold: 0.1 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,7 +100,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
   }, [goNext, goPrev]);
 
   useEffect(() => {
-    if (slideCount <= 1 || isPaused) {
+    if (slideCount <= 1 || isPaused || !isVisible) {
       return undefined;
     }
 
@@ -92,10 +109,11 @@ function SkillsCarousel({ languages, lang = 'da' }) {
     }, 5500);
 
     return () => window.clearInterval(timer);
-  }, [slideCount, isPaused, pageSize]);
+  }, [slideCount, isPaused, isVisible, pageSize]);
 
   return (
     <div
+      ref={frameRef}
       className="skills-carousel-frame"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -125,45 +143,38 @@ function SkillsCarousel({ languages, lang = 'da' }) {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            {slides.map((slide, slideIndex) => (
-              <div
-                key={`slide-${slideIndex}`}
-                className={`skills-carousel-slide${slideIndex === activeIndex ? ' is-active' : ''}`}
-                aria-hidden={slideIndex !== activeIndex}
-              >
-                <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
-                  {slide.map((langObj) => {
-                    const logoKey = langObj.name;
-                    const logoFile = logoMap[logoKey];
-                    const logoSrc = logoFile ? `${import.meta.env.BASE_URL}${logoFile}` : null;
+            <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
+              {activeSlide.map((langObj) => {
+                const logoFile = logoMap[langObj.name];
+                const logoSrc = logoFile ? `${import.meta.env.BASE_URL}${logoFile}` : null;
 
-                    return (
-                      <article key={langObj.name} className="skills-language-card">
-                        <div className="skills-language-logo-shell">
-                          {logoSrc ? (
-                            <img
-                              src={logoSrc}
-                              alt=""
-                              className="skills-language-logo"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          ) : (
-                            <div className="skills-language-logo-fallback" aria-hidden="true">
-                              {langObj.name.slice(0, 1)}
-                            </div>
-                          )}
+                return (
+                  <article key={langObj.name} className="skills-language-card">
+                    <div className="skills-language-logo-shell">
+                      {logoSrc ? (
+                        <img
+                          src={logoSrc}
+                          alt=""
+                          className="skills-language-logo"
+                          width="76"
+                          height="76"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div className="skills-language-logo-fallback" aria-hidden="true">
+                          {langObj.name.slice(0, 1)}
                         </div>
+                      )}
+                    </div>
 
-                        <div className="skills-language-meta">
-                          <h4 className="skills-language-name">{langObj.name}</h4>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+                    <div className="skills-language-meta">
+                      <h4 className="skills-language-name">{langObj.name}</h4>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
 
           {slideCount > 1 && (

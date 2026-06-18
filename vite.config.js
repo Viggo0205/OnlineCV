@@ -20,7 +20,12 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false,
+    modulePreload: {
+      resolveDependencies(_filename, deps) {
+        return deps.filter((dep) => !dep.includes('react-pdf'));
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {

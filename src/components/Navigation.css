@@ -105,6 +105,7 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid var(--border-color);
+  contain: layout style paint;
 }
 
 .nav-container {

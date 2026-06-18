@@ -22,7 +22,15 @@ const Header = ({ lang = 'da' }) => {
       <div className="header-content">
         <div className="profile-section">
           <div className="profile-image">
-            <img src={"/OnlineCV/ProfilBillede.PNG"} alt="Profil billede" className="profile-avatar" />
+            <img
+              src={`${import.meta.env.BASE_URL}ProfilBillede.PNG`}
+              alt="Profil billede"
+              className="profile-avatar"
+              width="144"
+              height="144"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
           <div className="profile-info">
             <h1 className="profile-name">{personalInfo.name}</h1>
