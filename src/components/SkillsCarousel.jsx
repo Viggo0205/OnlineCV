@@ -1,20 +1,20 @@
-import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState, useCallback } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const logoMap = {
   'C#': 'CSharpLogo.png',
-  'SQL': 'SQLLogo.png',
-  'Java': 'Javalogo.png',
-  'JavaScript': 'JavaScriptLogo.png',
-  'Python': 'PythonLogo.png',
-  'HTML': 'HTMLLogo.webp',
-  'Matlab': 'MatLabLogo.png',
+  SQL: 'SQLLogo.png',
+  PostgreSQL: 'SQLLogo.png',
+  Java: 'Javalogo.png',
+  JavaScript: 'JavaScriptLogo.png',
+  Python: 'PythonLogo.png',
+  'HTML/CSS': 'HTMLLogo.webp',
+  HTML: 'HTMLLogo.webp',
+  Matlab: 'MatLabLogo.png',
   'C++': 'C++logo.png',
-  'R': 'RLogo.png',
-  'C': 'CLogo.png',
+  R: 'RLogo.png',
+  C: 'CLogo.png',
 };
-
-import React, { useEffect, useState } from 'react';
 
 function chunkArray(array, size) {
   const result = [];
@@ -24,82 +24,182 @@ function chunkArray(array, size) {
   return result;
 }
 
-function SkillsCarousel({ languages }) {
+function SkillsCarousel({ languages, lang = 'da' }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(window.innerWidth < 768 ? 1 : 3);
+  const [pageSize, setPageSize] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3));
+  const [isPaused, setIsPaused] = useState(false);
+
+  const slides = chunkArray(languages, pageSize);
+  const slideCount = slides.length;
 
   useEffect(() => {
     const handleResize = () => {
       const newPageSize = window.innerWidth < 768 ? 1 : 3;
-      if (newPageSize !== pageSize) {
-        setPageSize(newPageSize);
-        setActiveIndex(0);
-      }
+      setPageSize((current) => {
+        if (current !== newPageSize) {
+          setActiveIndex(0);
+          return newPageSize;
+        }
+        return current;
+      });
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [pageSize]);
+  }, []);
 
-  const slides = chunkArray(languages, pageSize);
+  useEffect(() => {
+    setActiveIndex((current) => Math.min(current, Math.max(slideCount - 1, 0)));
+  }, [slideCount]);
+
+  const goTo = useCallback((index) => {
+    if (slideCount === 0) {
+      return;
+    }
+    const nextIndex = (index + slideCount) % slideCount;
+    setActiveIndex(nextIndex);
+  }, [slideCount]);
+
+  const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+  const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+
+  const handleTouchStart = useCallback((event) => {
+    event.currentTarget.dataset.touchStart = String(event.changedTouches[0].clientX);
+  }, []);
+
+  const handleTouchEnd = useCallback((event) => {
+    const startX = Number(event.currentTarget.dataset.touchStart || 0);
+    const delta = event.changedTouches[0].clientX - startX;
+
+    if (Math.abs(delta) < 48) {
+      return;
+    }
+
+    if (delta < 0) {
+      goNext();
+    } else {
+      goPrev();
+    }
+  }, [goNext, goPrev]);
+
+  useEffect(() => {
+    if (slideCount <= 1 || isPaused) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % slideCount);
+    }, 5500);
+
+    return () => window.clearInterval(timer);
+  }, [slideCount, isPaused, pageSize]);
 
   return (
-    <div className="skills-carousel-frame">
+    <div
+      className="skills-carousel-frame"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsPaused(false);
+        }
+      }}
+    >
       <div className="skills-carousel-surface">
-        <Carousel
-          className="skills-carousel-track"
-          interval={5000}
-          controls={slides.length > 1}
-          indicators={false}
-          pause={false}
-          activeIndex={activeIndex}
-          onSelect={setActiveIndex}
-          nextIcon={<span className="skills-carousel-control-icon" aria-hidden="true">&#8250;</span>}
-          prevIcon={<span className="skills-carousel-control-icon" aria-hidden="true">&#8249;</span>}
-        >
-          {slides.map((slide, idx) => (
-            <Carousel.Item key={'slide-' + idx}>
-              <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
-                {slide.map((langObj, langIdx) => {
-                  const logoSrc = logoMap[langObj.name] ? `${import.meta.env.BASE_URL}${logoMap[langObj.name]}` : null;
-                  return (
-                    <article key={langObj.name + '-' + langIdx} className="skills-language-card">
-                      <div className="skills-language-logo-shell">
-                        {logoSrc ? (
-                          <img src={logoSrc} alt={langObj.name + ' logo'} className="skills-language-logo" />
-                        ) : (
-                          <div className="skills-language-logo-fallback">{langObj.name.slice(0, 1)}</div>
-                        )}
-                      </div>
-                      <div className="skills-language-meta">
-                        <p className="skills-language-eyebrow">Language</p>
-                        <h4 className="skills-language-name">{langObj.name}</h4>
-                      </div>
-                    </article>
-                  );
-                })}
+        <div className="skills-carousel-viewport">
+          {slideCount > 1 && (
+            <button
+              type="button"
+              className="skills-carousel-nav skills-carousel-nav-prev"
+              onClick={goPrev}
+              aria-label={lang === 'da' ? 'Forrige sprog' : 'Previous languages'}
+            >
+              <ChevronLeft size={22} strokeWidth={2.25} />
+            </button>
+          )}
+
+          <div
+            className="skills-carousel-stage"
+            aria-live="polite"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {slides.map((slide, slideIndex) => (
+              <div
+                key={`slide-${slideIndex}`}
+                className={`skills-carousel-slide${slideIndex === activeIndex ? ' is-active' : ''}`}
+                aria-hidden={slideIndex !== activeIndex}
+              >
+                <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
+                  {slide.map((langObj) => {
+                    const logoKey = langObj.name;
+                    const logoFile = logoMap[logoKey];
+                    const logoSrc = logoFile ? `${import.meta.env.BASE_URL}${logoFile}` : null;
+
+                    return (
+                      <article key={langObj.name} className="skills-language-card">
+                        <div className="skills-language-logo-shell">
+                          {logoSrc ? (
+                            <img
+                              src={logoSrc}
+                              alt=""
+                              className="skills-language-logo"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          ) : (
+                            <div className="skills-language-logo-fallback" aria-hidden="true">
+                              {langObj.name.slice(0, 1)}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="skills-language-meta">
+                          <h4 className="skills-language-name">{langObj.name}</h4>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
               </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-        <div className="skills-carousel-footer">
-          <div className="skills-carousel-page-counter">
-            <span>{String(activeIndex + 1).padStart(2, '0')}</span>
-            <span className="skills-carousel-page-separator">/</span>
-            <span>{String(slides.length).padStart(2, '0')}</span>
-          </div>
-          <div className="skills-carousel-dots" role="tablist" aria-label="Programming language slides">
-            {slides.map((_, index) => (
-              <button
-                key={`dot-${index}`}
-                type="button"
-                className={`skills-carousel-dot${index === activeIndex ? ' is-active' : ''}`}
-                onClick={() => setActiveIndex(index)}
-                aria-label={`Show slide ${index + 1}`}
-              />
             ))}
           </div>
+
+          {slideCount > 1 && (
+            <button
+              type="button"
+              className="skills-carousel-nav skills-carousel-nav-next"
+              onClick={goNext}
+              aria-label={lang === 'da' ? 'Næste sprog' : 'Next languages'}
+            >
+              <ChevronRight size={22} strokeWidth={2.25} />
+            </button>
+          )}
         </div>
+
+        {slideCount > 1 && (
+          <div className="skills-carousel-footer">
+            <div className="skills-carousel-page-counter">
+              <span>{String(activeIndex + 1).padStart(2, '0')}</span>
+              <span className="skills-carousel-page-separator">/</span>
+              <span>{String(slideCount).padStart(2, '0')}</span>
+            </div>
+            <div className="skills-carousel-dots" role="tablist" aria-label={lang === 'da' ? 'Sprog slides' : 'Language slides'}>
+              {slides.map((_, index) => (
+                <button
+                  key={`dot-${index}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === activeIndex}
+                  className={`skills-carousel-dot${index === activeIndex ? ' is-active' : ''}`}
+                  onClick={() => goTo(index)}
+                  aria-label={lang === 'da' ? `Vis slide ${index + 1}` : `Show slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

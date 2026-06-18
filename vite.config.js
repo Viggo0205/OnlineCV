@@ -12,7 +12,6 @@ export default defineConfig({
       '@styles': resolve(__dirname, './src/styles'),
       '@assets': resolve(__dirname, './src/assets'),
       '@data': resolve(__dirname, './src/data'),
-      '@utils': resolve(__dirname, './src/utils')
     }
   },
   server: {

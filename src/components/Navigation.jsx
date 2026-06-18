@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
-// import { Link, useLocation } from 'react-router-dom'
-import { 
-  User, 
-  Code, 
-  Briefcase, 
-  FolderOpen, 
-  Settings, 
-  Mail, 
-  Sun, 
+import { useState } from 'react'
+import {
+  User,
+  Code,
+  Briefcase,
+  FolderOpen,
+  Settings,
+  Mail,
+  Sun,
   Moon,
-  Download,
+  Printer,
   Home
 } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 import CVPDFExport from './CVPDFExport'
-import cvData from '../data/cvData'
 import './Navigation.css'
 
 const Navigation = ({ lang = 'da', setLang }) => {
   const { theme, toggleTheme } = useTheme()
-  // const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const navigationItems = [
@@ -30,25 +27,22 @@ const Navigation = ({ lang = 'da', setLang }) => {
     { href: '#projects', label: { da: 'Projekter', en: 'Projects' }, icon: FolderOpen },
     { href: '#system', label: { da: 'Systemudvikling', en: 'System Development' }, icon: Settings },
     { href: '#contact', label: { da: 'Kontakt', en: 'Contact' }, icon: Mail }
-  ];
+  ]
 
   const handlePrint = () => {
     window.print()
   }
 
   return (
-    <nav className="navigation">
+    <nav className="navigation no-print" aria-label={lang === 'da' ? 'CV navigation' : 'CV navigation'}>
       <div className="nav-container">
         <div className="nav-brand">
           <h2>Victor T. U. Olszowski</h2>
         </div>
 
-        {/* Hamburger menu for small screens */}
-
-
-        <ul className={`nav-list${menuOpen ? ' open' : ''}`}>
+        <ul id="cv-navigation" className={`nav-list${menuOpen ? ' open' : ''}`}>
           {navigationItems.map((item) => {
-            const IconComponent = item.icon;
+            const IconComponent = item.icon
             return (
               <li key={item.href} className="nav-item">
                 <a
@@ -56,59 +50,35 @@ const Navigation = ({ lang = 'da', setLang }) => {
                   className="nav-link"
                   onClick={() => setMenuOpen(false)}
                 >
-                  <IconComponent size={18} />
+                  <IconComponent size={18} aria-hidden="true" />
                   <span className="nav-text">{item.label[lang]}</span>
                 </a>
               </li>
-            );
+            )
           })}
         </ul>
         <div className="nav-right">
           <button
+            type="button"
             className="btn btn-secondary nav-theme-btn"
             onClick={toggleTheme}
+            aria-label={theme === 'light'
+              ? (lang === 'da' ? 'Skift til mørkt tema' : 'Switch to dark theme')
+              : (lang === 'da' ? 'Skift til lyst tema' : 'Switch to light theme')}
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
-          <CVPDFExport cvData={{
-            name: cvData.personalInfo.name,
-            title: typeof cvData.personalInfo.title === 'object' ? (cvData.personalInfo.title[lang] || cvData.personalInfo.title['da']) : cvData.personalInfo.title,
-            avatar: '/OnlineCV/ProfilBillede.PNG',
-            phone: cvData.personalInfo.phone,
-            email: cvData.personalInfo.email,
-            address: typeof cvData.personalInfo.address === 'object' ? (cvData.personalInfo.address[lang] || cvData.personalInfo.address['da']) : cvData.personalInfo.address,
-            linkedin: cvData.personalInfo.linkedin,
-            keySkills: cvData.relevantSkills.generalSkills.flatMap(cat => cat.skills.map(skill => typeof skill === 'object' ? (skill[lang] || skill['da'] || Object.values(skill)[0]) : skill)),
-            technicalSkills: [
-              ...cvData.programmingSkills.languages.map(langObj => langObj.name),
-              ...cvData.programmingSkills.tools,
-              ...cvData.programmingSkills.frameworks.map(fw => fw.name)
-            ],
-            summary: typeof cvData.personalInfo.summary === 'object' ? (cvData.personalInfo.summary[lang] || cvData.personalInfo.summary['da']) : cvData.personalInfo.summary,
-            education: [
-              {
-                degree: lang === 'da' ? 'GameIT College' : 'GameIT College',
-                location: 'Viden Djurs',
-                specialization: lang === 'da' ? 'Spiludvikling & IT' : 'Game Development & IT'
-              },
-              {
-                degree: lang === 'da' ? 'Bachelor i Cyber Teknologi (ikke fuldført)' : 'Bachelor of Science in Cyber Technology (not completed)',
-                location: 'DTU',
-                specialization: lang === 'da' ? '100 ECTS - Programmering, Software, Netværk, Hardware' : '100 ECTS - Programming, Software, Networks, Hardware'
-              },
-              {
-                degree: lang === 'da' ? 'Datamatiker' : 'Computer Science AP',
-                location: 'Zealand',
-                specialization: lang === 'da' ? 'Softwareudvikling' : 'Software Development'
-              }
-            ],
-            experience: cvData.experience.filter(exp => exp.id === 2).map(exp => ({
-              title: typeof exp.title === 'object' ? (exp.title[lang] || exp.title['da'] || Object.values(exp.title)[0]) : exp.title,
-              location: exp.company
-            })),
-            lang: lang
-          }} />
           <button
+            type="button"
+            className="btn btn-secondary nav-print-btn"
+            onClick={handlePrint}
+            aria-label={lang === 'da' ? 'Udskriv CV' : 'Print CV'}
+          >
+            <Printer size={18} />
+          </button>
+          <CVPDFExport lang={lang} />
+          <button
+            type="button"
             className="btn btn-primary nav-language-btn"
             onClick={() => {
               const newLang = lang === 'da' ? 'en' : 'da'
@@ -119,8 +89,11 @@ const Navigation = ({ lang = 'da', setLang }) => {
             {lang === 'da' ? 'English' : 'Dansk'}
           </button>
           <button
+            type="button"
             className="nav-hamburger"
-            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            aria-controls="cv-navigation"
+            aria-label={lang === 'da' ? 'Åbn navigation' : 'Toggle navigation menu'}
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span className="hamburger-bar" />
@@ -128,8 +101,6 @@ const Navigation = ({ lang = 'da', setLang }) => {
             <span className="hamburger-bar" />
           </button>
         </div>
-
-        {/* ...existing code... */}
       </div>
     </nav>
   )

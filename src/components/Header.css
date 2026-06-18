@@ -116,8 +116,8 @@
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   flex-shrink: 0;
-  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
-  border: 1px solid rgba(17, 17, 17, 0.12);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,11 +137,11 @@
 .profile-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text-primary);
   font-size: 3rem;
   font-weight: bold;
   transition: transform var(--transition-normal);
@@ -187,8 +187,8 @@
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  box-shadow: 0 0 0 6px rgba(17, 17, 17, 0.06);
+  background: var(--accent-color);
+  box-shadow: 0 0 0 6px var(--accent-soft);
 }
 
 .profile-summary {
@@ -203,11 +203,11 @@
   flex-direction: column;
   gap: 0.9rem;
   min-width: 280px;
-  background: linear-gradient(180deg, var(--bg-secondary), var(--bg-elevated));
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
   padding: 1.2rem;
   border-radius: 28px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(12px);
 }
 
@@ -283,9 +283,9 @@
 }
 
 .header .profile-card {
-  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   border-radius: 26px;
   padding: 1.75rem 1.5rem;
 }
@@ -303,12 +303,19 @@
 }
 
 [data-theme="dark"] .profile-image {
-  background: linear-gradient(180deg, rgba(28, 28, 28, 0.98), rgba(14, 14, 14, 0.98));
+  background: rgba(20, 20, 20, 0.88);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
 [data-theme="dark"] .profile-title {
   color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .header .profile-card {
+  background: rgba(20, 20, 20, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Responsive design */

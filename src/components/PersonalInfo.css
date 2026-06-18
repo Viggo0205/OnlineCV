@@ -40,7 +40,7 @@
 }
 /* Modern card style for profile sections */
 .header .profile-card {
-  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 22px;
   box-shadow: var(--shadow-sm);
@@ -53,6 +53,11 @@
   min-width: 220px;
   max-width: 320px;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+[data-theme="dark"] .header .profile-card {
+  background: rgba(20, 20, 20, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .header .profile-card:hover {
@@ -221,7 +226,7 @@
   transform: translateX(-50%);
   width: 40px;
   height: 3px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: var(--accent-color);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 

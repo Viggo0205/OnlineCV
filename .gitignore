@@ -8,7 +8,6 @@ Thumbs.db
 npm-debug.log*
 coverage/
 *.tgz
-package-lock.json
-node_modules
-
-index.html
+node_modules/
+dist/
+generated/*.pdf

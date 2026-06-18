@@ -1,6 +1,6 @@
-import React from 'react'
-import { FolderOpen, ExternalLink, Github } from 'lucide-react'
+import { FolderOpen, Github } from 'lucide-react'
 import cvData from '../data/cvData'
+import { t } from '../data/i18n'
 import './Projects.css'
 
 const translations = {
@@ -25,7 +25,7 @@ const Projects = ({ lang = 'da' }) => {
       </p>
 
       <div className="projects-grid grid grid-2">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div key={project.id} className="project-card card">
             <div className="project-header">
               <h3 className="project-title">{project.title}</h3>
@@ -41,7 +41,7 @@ const Projects = ({ lang = 'da' }) => {
                 </a>
               )}
             </div>
-            <p className="project-description">{project.description}</p>
+            <p className="project-description">{t(project.description, lang)}</p>
             {project.highlights && (
               <div className="project-highlights">
                 <h4 className="highlights-title">Highlights:</h4>
@@ -56,7 +56,7 @@ const Projects = ({ lang = 'da' }) => {
             )}
             <div className="project-technologies">
               {project.technologies.map((tech, techIndex) => (
-                <span key={techIndex} className="tech-badge badge badge-secondary">
+                <span key={techIndex} className="badge badge-secondary project-tech-badge">
                   {tech}
                 </span>
               ))}

@@ -17,8 +17,16 @@
 
 .contact-info-card,
 .download-card {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   transition: transform var(--transition-normal);
+}
+
+[data-theme="dark"] .contact-info-card,
+[data-theme="dark"] .download-card,
+[data-theme="dark"] .contact-footer {
+  background: rgba(20, 20, 20, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .contact-info-card:hover,
@@ -109,7 +117,8 @@
 .contact-footer {
   text-align: center;
   padding: var(--spacing-xl);
-  background: var(--bg-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   margin-top: var(--spacing-xl);
 }

@@ -26,7 +26,8 @@
 .methods-card,
 .tools-card,
 .frameworks-card {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   transition: transform var(--transition-normal);
 }
 
@@ -67,8 +68,20 @@
 }
 
 .system-description {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   margin-top: var(--spacing-xl);
+}
+
+[data-theme="dark"] .methods-card,
+[data-theme="dark"] .tools-card,
+[data-theme="dark"] .frameworks-card,
+[data-theme="dark"] .system-description,
+[data-theme="dark"] .method-item,
+[data-theme="dark"] .tool-item,
+[data-theme="dark"] .framework-item {
+  background: rgba(20, 20, 20, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .description-title {

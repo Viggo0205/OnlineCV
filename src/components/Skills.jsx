@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import SkillsCarousel from './SkillsCarousel'
 import { Code, Database, Settings, Wrench } from 'lucide-react'
+import SkillsCarousel from './SkillsCarousel'
 import cvData from '../data/cvData'
+import { t } from '../data/i18n'
 import './Skills.css'
 
 const Skills = ({ lang = 'da' }) => {
@@ -45,7 +45,7 @@ const Skills = ({ lang = 'da' }) => {
           {lang === 'da' ? 'Programmeringssprog' : 'Programming Languages'}
         </h3>
         <div className="skills-carousel-shell">
-          <SkillsCarousel languages={languages} />
+          <SkillsCarousel languages={languages} lang={lang} />
         </div>
       </div>
 
@@ -79,8 +79,11 @@ const Skills = ({ lang = 'da' }) => {
               <h4 className="framework-name">{framework.name}</h4>
               {framework.versions && (
                 <p className="framework-versions">
-                  Versioner: {framework.versions.join(', ')}
+                  {lang === 'da' ? 'Versioner' : 'Versions'}: {framework.versions.join(', ')}
                 </p>
+              )}
+              {framework.level && (
+                <p className="framework-level">{t(framework.level, lang)}</p>
               )}
             </div>
           ))}

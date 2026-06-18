@@ -20,6 +20,54 @@ export const cvData = {
     linkedin: "https://www.linkedin.com/in/victor-olszowski-56a40634b/"
   },
 
+  pdf: {
+    displayName: "V. Olszowski",
+    onlineCv: "https://viggo0205.github.io/OnlineCV/",
+    avatarPath: "/OnlineCV/ProfilBillede.PNG",
+    featuredProjectIds: [5, 1, 2, 4]
+  },
+
+  education: [
+    {
+      id: 1,
+      degree: { da: "Datamatiker", en: "AP Degree in Computer Science" },
+      institution: "Zealand",
+      period: "2023–2026",
+      details: {
+        da: "Softwareudvikling, systemudvikling og backend-fokuserede forløb. Hovedopgave: MCP og AI-integration.",
+        en: "Software development, system development, and backend-focused coursework. Thesis: MCP and AI integration."
+      }
+    },
+    {
+      id: 2,
+      degree: {
+        da: "Cyberteknologi (100 ECTS gennemført)",
+        en: "Cyber Technology Studies (100 ECTS completed)"
+      },
+      institution: {
+        da: "Danmarks Tekniske Universitet (DTU)",
+        en: "Technical University of Denmark (DTU)"
+      },
+      period: "2019–2022",
+      details: {
+        da: "Programmering, netværk, hardwaredesign og softwareudvikling",
+        en: "Programming, networking, hardware design, and software engineering"
+      }
+    },
+    {
+      id: 3,
+      degree: {
+        da: "GameIT College – Spiludvikling & IT",
+        en: "GameIT College – Game Development & IT"
+      },
+      institution: "Viden Djurs",
+      details: {
+        da: "C#, Unity og programmering som del af gymnasieforløb",
+        en: "C#, Unity and programming as part of upper secondary education"
+      }
+    }
+  ],
+
   relevantSkills: {
     generalSkills: [
       {
@@ -44,6 +92,9 @@ export const cvData = {
         category: { da: "Database & Server", en: "Database & Server" },
         skills: [
           { da: "SQL database design", en: "SQL database design" },
+          { da: "PostgreSQL", en: "PostgreSQL" },
+          { da: "Azure App Service", en: "Azure App Service" },
+          { da: "GitHub Actions og CI/CD", en: "GitHub Actions and CI/CD" },
           { da: "Server client struktur", en: "Server client structure" },
           { da: "MCP servere", en: "MCP servers" }
         ]
@@ -62,31 +113,34 @@ export const cvData = {
 
   programmingSkills: {
     languages: [
-      { name: "C#", level: 75, experience: "God praktisk erfaring" },
-      { name: "SQL", level: 70, experience: "God erfaring" },
-      { name: "JavaScript", level: 65, experience: "Funktionel arbejdskendskab" },
-      { name: "Java", level: 60, experience: "God erfaring" },
-      { name: "Python", level: 55, experience: "Grundlæggende+" },
-      { name: "HTML/CSS", level: 70, experience: "Solid grundlag" },
-      { name: "Matlab", level: 45, experience: "Grundlæggende" },
-      { name: "C++", level: 40, experience: "Grundlæggende" },
-      { name: "R", level: 35, experience: "Grundlæggende" },
-      { name: "C", level: 40, experience: "Grundlæggende" }
+      { name: "C#", level: 75, experience: { da: "God praktisk erfaring", en: "Solid practical experience" } },
+      { name: "SQL", level: 70, experience: { da: "God erfaring", en: "Solid experience" } },
+      { name: "PostgreSQL", level: 60, experience: { da: "Erfaring fra hovedforløb", en: "Experience from main programme" } },
+      { name: "JavaScript", level: 65, experience: { da: "Funktionel arbejdskendskab", en: "Working knowledge" } },
+      { name: "Java", level: 60, experience: { da: "God erfaring", en: "Solid experience" } },
+      { name: "Python", level: 55, experience: { da: "Grundlæggende+", en: "Basic+" } },
+      { name: "HTML/CSS", level: 70, experience: { da: "Solid grundlag", en: "Solid foundation" } },
+      { name: "Matlab", level: 45, experience: { da: "Grundlæggende", en: "Basic" } },
+      { name: "C++", level: 40, experience: { da: "Grundlæggende", en: "Basic" } },
+      { name: "R", level: 35, experience: { da: "Grundlæggende", en: "Basic" } },
+      { name: "C", level: 40, experience: { da: "Grundlæggende", en: "Basic" } }
     ],
     tools: [
       "Visual Studio",
       "Visual Studio Code",
       "Entity Framework Core",
       "Simply.com",
-      "Azure",
+      "Azure App Service",
+      "GitHub Actions (CI/CD)",
+      "PostgreSQL",
       "TCP/UDP servers",
       "REST API",
       "Webapps"
     ],
     frameworks: [
       { name: "Umbraco", versions: ["13", "16"] },
-      { name: "Vue.js", level: "God erfaring" },
-      { name: "React", level: "Lidt erfaring" }
+      { name: "Vue.js", level: { da: "God erfaring", en: "Solid experience" } },
+      { name: "React", level: { da: "Lidt erfaring", en: "Some experience" } }
     ]
   },
 
@@ -151,7 +205,11 @@ export const cvData = {
     {
       id: 3,
       title: { da: "DTU-kurser", en: "DTU Courses" },
-      company: "Danmarks Tekniske Universitet (DTU) - 100 ECTS points (not completed)",
+      company: {
+        da: "Danmarks Tekniske Universitet (DTU) - 100 ECTS (ikke fuldført)",
+        en: "Technical University of Denmark (DTU) - 100 ECTS (not completed)"
+      },
+      isDtu: true,
       period: "2019-2022",
       description: {
         da: "Gennem min bacheloruddannelse i Cyberteknologi bestod jeg en række kurser svarende til 100 ECTS, som gav mig stærke kompetencer inden for programmering, softwareudvikling, netværk, hardwaredesign og systemudvikling. Uddannelsen blev ikke fuldført.",
@@ -175,7 +233,7 @@ export const cvData = {
       id: 1,
       title: { da: "Uddannelse ved Zealand", en: "Education at Zealand" },
       company: "Zealand",
-      period: "2023– 2026",
+      period: "2023–2026",
       description: {
         da: "Gennem min datamatiker-uddannelse ved Zealand har jeg gennemført en række kurser, der har styrket mine kompetencer inden for softwareudvikling, databaser, systemudvikling og programmering.",
         en: "Through my Computer Science education at Zealand, I completed a series of courses that strengthened my skills in software development, databases, system development, and programming."
@@ -191,7 +249,7 @@ export const cvData = {
         { da: "Praktikprøven", en: "Internship Exam" },
         { da: "Hovedopgave: Model Context Protocol (MCP) - Integration af AI-værktøjer og protokoller", en: "Final Thesis: Model Context Protocol (MCP) - AI tool integration and protocol design" }
       ],
-      technologies: ["C#", "JavaScript", "SQL", "Azure", "Entity Framework", "Vue.js"]
+      technologies: ["C#", "JavaScript", "SQL", "PostgreSQL", "Azure App Service", "GitHub Actions", "Entity Framework", "Vue.js"]
     },
     {
       id: 2,
@@ -199,15 +257,14 @@ export const cvData = {
       company: "Kruso",
       period: "Efterår 2025 (10 uger)",
       description: {
-        da: "I mit 10-ugers praktikforløb hos Kruso i efteråret 2025 arbejdede jeg med backend-udvikling af et internt værktøj, hvor jeg anvendte Umbraco og .NET. Jeg var ansvarlig for at designe og implementere hele strukturen af backenden – fra API-endpoints til service- og repository-lag – samt integrationer, så værktøjet kunne understøtte virksomhedens interne processer effektivt. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
-        en: "During my 10-week internship at Kruso in the fall of 2025, I worked on backend development of an internal tool using Umbraco and .NET. I was responsible for designing and implementing the entire backend structure – from API endpoints to service and repository layers – as well as integrations to support the company's internal processes efficiently. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
+        da: "I mit 10-ugers praktikforløb hos Kruso i efteråret 2025 designede og implementerede jeg hele backend-strukturen på et internt værktøj i C# og .NET – fra REST API-endpoints og servicelag til integrationer med Umbraco 13 og 16. Til datalagring arbejdede jeg med SQLite og direkte SQL. Arbejdet gav mig solid erfaring med moderne .NET-udvikling, CMS-integration og arkitektur af backend-løsninger.",
+        en: "During my 10-week internship at Kruso in the fall of 2025, I designed and implemented the full backend structure for an internal tool in C# and .NET – from REST API endpoints and service layers to integrations with Umbraco 13 and 16. For data storage I worked with SQLite using direct SQL. The work gave me solid experience with modern .NET development, CMS integration, and backend solution architecture."
       },
       achievements: [
-        { da: "Designede og implementerede RESTful API med 8+ endpoints til intern datamanipulation", en: "Designed and implemented RESTful API with 8+ endpoints for internal data manipulation" },
-        { da: "Udviklede repository pattern-arkitektur med Entity Framework Core og SQLite", en: "Developed repository pattern architecture with Entity Framework Core and SQLite" },
-        { da: "Integrerede backend-funktionalitet med Umbraco 13 CMS til content management", en: "Integrated backend functionality with Umbraco 13 CMS for content management" },
+        { da: "Designede og implementerede hele backend-strukturen i C# og .NET", en: "Designed and implemented the full backend structure in C# and .NET" },
+        { da: "Byggede REST API-endpoints og service-/repository-lag integreret med Umbraco 13 og 16", en: "Built REST API endpoints and service/repository layers integrated with Umbraco 13 and 16" },
+        { da: "Arbejdede med SQLite og direkte SQL til datalagring og -hentning", en: "Worked with SQLite using direct SQL for data storage and retrieval" },
         { da: "Deltog i code reviews og agile udviklingsprocesser med Git", en: "Participated in code reviews and agile development processes with Git" },
-        { da: "Implementerede datamodeller, DTOs og service-lag efter moderne arkitekturprincipper", en: "Implemented data models, DTOs and service layers following modern architecture principles" },
         { da: "Håndterede validering og fejlhåndtering på API-niveau", en: "Handled validation and error handling at API level" }
       ],
       technologies: [".NET", "Umbraco", "C#", "SQLite"]
@@ -218,56 +275,80 @@ export const cvData = {
     {
       id: 1,
       title: "MultiplayerFarmington",
-      description: "Multiplayer farming game udviklet i Unity med netværksarkitektur. Designede og implementerede server-client kommunikation med real-time synkronisering af game state mellem spillere.",
-      technologies: ["C#", "Unity", "TCP/UDP networking", "Client-server arkitektur"],
+      description: {
+        da: "Multiplayer farming game udviklet i Unity med netværksarkitektur. Designede og implementerede server-client kommunikation med real-time synkronisering af game state mellem spillere.",
+        en: "Multiplayer farming game built in Unity with networked architecture. Designed and implemented server-client communication with real-time game state synchronisation between players."
+      },
+      technologies: ["C#", "Unity", "TCP/UDP networking", "Client-server architecture"],
       github: "https://github.com/Viggo0205/MultiplayerFarmington"
     },
     {
       id: 2,
       title: "FullStackOpgave",
-      description: "ASP.NET Core applikation med Entity Framework, SQL database og REST API. Implementerer CRUD-operationer, DTOs og service-lag med authentication og data validation.",
+      description: {
+        da: "ASP.NET Core applikation med Entity Framework, SQL database og REST API. Implementerer CRUD-operationer, DTOs og service-lag med authentication og data validation.",
+        en: "ASP.NET Core application with Entity Framework, SQL database and REST API. Implements CRUD operations, DTOs and service layers with authentication and data validation."
+      },
       technologies: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server", "REST API"],
       github: "https://github.com/Viggo0205/FullStackOpgave"
     },
     {
       id: 3,
       title: "DevOpsOpgave",
-      description: "DevOps-projekt med implementering af CI/CD pipelines, automatiseret testing og deployment. Arbejde med versionsstyring og moderne udviklingspraksis.",
+      description: {
+        da: "DevOps-projekt med implementering af CI/CD pipelines, automatiseret testing og deployment. Arbejde med versionsstyring og moderne udviklingspraksis.",
+        en: "DevOps project implementing CI/CD pipelines, automated testing and deployment. Work with version control and modern development practices."
+      },
       technologies: ["C#", "CI/CD", "Git", "Automated Testing"],
       github: "https://github.com/Viggo0205/DevOpsOpgave"
     },
     {
       id: 4,
       title: "OnlineCV",
-      description: "Interaktivt portfolio website bygget med React og Vite. Responsivt design med PDF-eksport funktionalitet til CV-generering.",
+      description: {
+        da: "Interaktivt portfolio website bygget med React og Vite. Responsivt design med PDF-eksport funktionalitet til CV-generering.",
+        en: "Interactive portfolio website built with React and Vite. Responsive design with PDF export functionality for CV generation."
+      },
       technologies: ["React", "JavaScript", "HTML", "CSS", "Vite"],
       github: "https://github.com/Viggo0205/OnlineCV"
     },
     {
       id: 5,
       title: "Hovedopgave - Model Context Protocol",
-      description: "Afsluttende hovedopgave om Model Context Protocol (MCP). Design og implementering af AI-integrationsprotokoller med fokus på sikkerhed, dataflow og API-design.",
+      description: {
+        da: "Afsluttende hovedopgave om Model Context Protocol (MCP). Design og implementering af AI-integrationsprotokoller med fokus på sikkerhed, dataflow og API-design.",
+        en: "Final thesis on Model Context Protocol (MCP). Design and implementation of AI integration protocols with a focus on security, data flow and API design."
+      },
       technologies: ["Python", "API Design", "Protocol Design", "AI Integration"],
       github: "https://github.com/Viggo0205/Hovedopgave"
     },
     {
       id: 6,
       title: "RESTful API Suite",
-      description: "Flere RESTful API services som demonstrerer backend-udviklingskompetencer. Implementering af HTTP-metoder, routing, og data-håndtering.",
+      description: {
+        da: "Flere RESTful API services som demonstrerer backend-udviklingskompetencer. Implementering af HTTP-metoder, routing, og data-håndtering.",
+        en: "Multiple RESTful API services demonstrating backend development skills. Implementation of HTTP methods, routing and data handling."
+      },
       technologies: ["C#", "Python", "REST API", "HTTP", "JSON"],
       github: "https://github.com/Viggo0205/RestKajakTur"
     },
     {
       id: 7,
       title: "IoT & Embedded Systems",
-      description: "IoT-løsninger inklusiv UDP broadcast service, SenseHat integration og Raspberry Pi automation. Arbejde med netværksprotokoller og hardware-integration.",
+      description: {
+        da: "IoT-løsninger inklusiv UDP broadcast service, SenseHat integration og Raspberry Pi automation. Arbejde med netværksprotokoller og hardware-integration.",
+        en: "IoT solutions including UDP broadcast service, SenseHat integration and Raspberry Pi automation. Work with network protocols and hardware integration."
+      },
       technologies: ["Python", "Raspberry Pi", "UDP", "IoT", "Hardware Integration"],
       github: "https://github.com/Viggo0205/UDPBroadcaster"
     },
     {
       id: 8,
       title: "Web Applications",
-      description: "Flere webapplikationer som demonstrerer frontend-udviklingskompetencer med responsivt design og brugerinteraktion.",
+      description: {
+        da: "Flere webapplikationer som demonstrerer frontend-udviklingskompetencer med responsivt design og brugerinteraktion.",
+        en: "Multiple web applications demonstrating frontend development skills with responsive design and user interaction."
+      },
       technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
       github: "https://github.com/Viggo0205/KajakTurWebApp"
     }

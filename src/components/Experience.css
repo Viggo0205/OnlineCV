@@ -7,15 +7,15 @@
 }
 
 .dtu-tag {
-  background: var(--primary-color) !important;
-  color: var(--text-white) !important;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
   font-size: var(--font-size-xs);
   font-weight: 500;
   padding: 0.4rem 0.75rem;
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
-
 .experience {
   /* Base section styles inherited */
 }
@@ -34,13 +34,12 @@
   min-width: 0;
   max-width: none;
   padding: 1.65rem 1.85rem 1.9rem;
-  border: 1px solid rgba(17, 17, 17, 0.10);
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
   text-align: left;
-  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-secondary));
+  background: var(--bg-card);
   border-radius: 24px;
 }
-
 .experience-card-title {
   color: var(--text-primary);
   font-size: 1.45rem;
@@ -68,9 +67,8 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: var(--accent-color);
 }
-
 .period {
   display: flex;
   align-items: center;
@@ -157,9 +155,7 @@
   margin-top: var(--spacing-sm);
 }
 
-.tech-badge {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
-  color: var(--text-white) !important;
+.experience .experience-tech-badge {
   font-size: var(--font-size-xs);
   font-weight: 500;
   padding: 0.4rem 0.75rem;
@@ -167,6 +163,10 @@
   white-space: nowrap;
 }
 
+[data-theme="dark"] .experience-card {
+  background: rgba(20, 20, 20, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
+}
 @media (max-width: 768px) {
   .experience-card {
     padding: 1.35rem;
@@ -195,11 +195,10 @@
     align-items: flex-start;
   }
 
-  .tech-badge {
+  .experience .experience-tech-badge {
     font-size: 10px;
     padding: 0.3rem 0.55rem;
-  }
-}
+  }}
 
 @media print {
   .experience,

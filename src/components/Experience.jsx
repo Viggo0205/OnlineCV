@@ -1,9 +1,9 @@
-import React from 'react'
 import { Briefcase, Calendar } from 'lucide-react'
 import cvData from '../data/cvData'
+import { t } from '../data/i18n'
 import './Experience.css'
 
-const Experience = ({ lang = 'en' }) => {
+const Experience = ({ lang = 'da' }) => {
   const { experience } = cvData
 
   return (
@@ -19,7 +19,7 @@ const Experience = ({ lang = 'en' }) => {
               {typeof job.title === 'object' ? (job.title[lang] || job.title['da'] || Object.values(job.title)[0]) : job.title}
             </div>
             <div className="company-name">
-              <span className="company-link">{job.company}</span>
+              <span className="company-link">{t(job.company, lang)}</span>
             </div>
             <div className="period experience-period">
               <Calendar size={16} className="period-icon" />
@@ -38,14 +38,14 @@ const Experience = ({ lang = 'en' }) => {
               </ul>
             )}
             {/* DTU-kurser tags for DTU card only */}
-            {job.company === 'Danmarks Tekniske Universitet (DTU)' && (
+            {job.isDtu && (
               <div className="technologies dtu-tech-list">
-                <span className="tech-badge badge badge-primary">C</span>
-                <span className="tech-badge badge badge-primary">Assembly</span>
-                <span className="tech-badge badge badge-primary">Matlab</span>
-                <span className="tech-badge badge badge-primary">Java</span>
-                <span className="tech-badge badge badge-primary">Python</span>
-                <span className="tech-badge badge badge-primary">VHDL</span>
+                <span className="experience-tech-badge badge badge-secondary">C</span>
+                <span className="experience-tech-badge badge badge-secondary">Assembly</span>
+                <span className="experience-tech-badge badge badge-secondary">Matlab</span>
+                <span className="experience-tech-badge badge badge-secondary">Java</span>
+                <span className="experience-tech-badge badge badge-secondary">Python</span>
+                <span className="experience-tech-badge badge badge-secondary">VHDL</span>
               </div>
             )}
             {job.achievements && (
@@ -65,7 +65,7 @@ const Experience = ({ lang = 'en' }) => {
             {job.technologies && (
               <div className="technologies">
                 {job.technologies.map((tech, techIndex) => (
-                  <span key={techIndex} className="tech-badge badge badge-primary">
+                  <span key={techIndex} className="experience-tech-badge badge badge-secondary">
                     {tech}
                   </span>
                 ))}

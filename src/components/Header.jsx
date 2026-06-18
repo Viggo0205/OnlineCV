@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Github, Linkedin, Heart, Gamepad2, Dumbbell, Targe
 import cvData from '../data/cvData'
 import './Header.css'
 
-const Header = ({ lang = 'da', setLang }) => {
+const Header = ({ lang = 'da' }) => {
   const { personalInfo, personalProfile } = cvData
   // Map both Danish and English interests to Lucide React icons
   const interestIcons = {
