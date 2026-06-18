@@ -12,7 +12,7 @@ import {
   Home
 } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
-import CVPDFExport from './CVPDFExport'
+import CVPDFExportLazy from './CVPDFExportLazy'
 import './Navigation.css'
 
 const Navigation = ({ lang = 'da', setLang }) => {
@@ -76,7 +76,7 @@ const Navigation = ({ lang = 'da', setLang }) => {
           >
             <Printer size={18} />
           </button>
-          <CVPDFExport lang={lang} />
+          <CVPDFExportLazy lang={lang} />
           <button
             type="button"
             className="btn btn-primary nav-language-btn"

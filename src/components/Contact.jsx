@@ -1,6 +1,6 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
 import cvData from '../data/cvData'
-import CVPDFExport from './CVPDFExport'
+import CVPDFExportLazy from './CVPDFExportLazy'
 import './Contact.css'
 
 const Contact = ({ lang = 'da' }) => {
@@ -56,7 +56,7 @@ const Contact = ({ lang = 'da' }) => {
               : 'Download my CV as PDF.'}
           </p>
           <div style={{ marginTop: '1rem' }}>
-            <CVPDFExport key={lang} lang={lang} />
+            <CVPDFExportLazy key={lang} lang={lang} />
           </div>
         </div>
       </div>

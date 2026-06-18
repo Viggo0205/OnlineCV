@@ -113,43 +113,14 @@ body {
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  background-image:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.42), transparent 22%),
-    radial-gradient(circle at 85% 15%, rgba(17, 17, 17, 0.06), transparent 20%),
-    linear-gradient(160deg, var(--bg-primary) 0%, var(--bg-secondary) 52%, #fbfbfb 100%);
-  background-attachment: fixed;
+  background-image: linear-gradient(160deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   min-height: 100vh;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  inset: auto;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(18px);
-}
-
-body::before {
-  top: 5rem;
-  left: -4rem;
-  width: 16rem;
-  height: 16rem;
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-}
-
-body::after {
-  right: -3rem;
-  bottom: 8rem;
-  width: 18rem;
-  height: 18rem;
-  background: rgba(17, 17, 17, 0.06);
-  border-radius: 999px;
+[data-theme="dark"] body {
+  background-image: linear-gradient(160deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 /* Container */
