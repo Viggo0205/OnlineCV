@@ -1,15 +1,63 @@
 import cvData from './cvData.js';
 import { t } from './i18n.js';
 
-const orderedExperienceIds = [2, 1, 3];
+const orderedExperienceIds = [2, 4, 1, 3];
 
-export function getTechnicalSkills() {
+/** Curated PDF skills — keyword-packed, no clutter */
+export function getPdfSkillGroups(lang = 'da') {
+  const labels =
+    lang === 'da'
+      ? {
+          backend: 'Backend',
+          frontend: 'Frontend',
+          databases: 'Databaser',
+          devops: 'DevOps & værktøjer',
+          methods: 'Metoder',
+        }
+      : {
+          backend: 'Backend',
+          frontend: 'Frontend',
+          databases: 'Databases',
+          devops: 'DevOps & tools',
+          methods: 'Methods',
+        };
+
   return [
-    ...cvData.programmingSkills.languages.map((item) => item.name),
-    ...cvData.programmingSkills.tools,
-    ...cvData.programmingSkills.frameworks.map((item) => item.name),
-    'Git',
+    {
+      label: labels.backend,
+      skills: ['C#', '.NET', 'REST API', 'Entity Framework Core', 'ASP.NET Core'],
+    },
+    {
+      label: labels.frontend,
+      skills: ['JavaScript', 'TypeScript', 'Vue.js', 'React', 'HTML/CSS'],
+    },
+    {
+      label: labels.databases,
+      skills: ['SQL', 'PostgreSQL', 'SQLite'],
+    },
+    {
+      label: labels.devops,
+      skills: [
+        'Git',
+        'GitHub Actions (CI/CD)',
+        'Azure App Service',
+        'Unit testing',
+        'Integration testing',
+        'Linux',
+      ],
+    },
+    {
+      label: labels.methods,
+      skills:
+        lang === 'da'
+          ? ['Scrum', 'Agile', 'Code reviews', 'Parprogrammering', 'Dokumentation']
+          : ['Scrum', 'Agile', 'Code reviews', 'Pair programming', 'Documentation'],
+    },
   ];
+}
+
+export function getTechnicalSkills(lang = 'da') {
+  return getPdfSkillGroups(lang).flatMap((group) => group.skills);
 }
 
 export function getPdfExperienceEntries(lang = 'da') {
@@ -31,17 +79,37 @@ function getExperienceBullets(entry, lang) {
 
   if (entry.courses?.length) {
     const summary = t(entry.description, lang);
+    const preferred =
+      lang === 'da'
+        ? ['Programmeringsprøven', 'Systemudviklingsprøven', 'Hovedopgave']
+        : ['Programming Exam', 'System Development Exam', 'Final Thesis'];
+
     const courseSample = entry.courses
+      .filter((course) => {
+        const label = t(course, lang);
+        return preferred.some((p) => label.includes(p));
+      })
       .slice(0, 2)
       .map((course) => t(course, lang))
       .join(', ');
 
-    return courseSample
-      ? [`${summary}`, `${lang === 'da' ? 'Udvalgte forløb' : 'Selected courses'}: ${courseSample}`]
+    const fallback = entry.courses
+      .slice(0, 2)
+      .map((course) => t(course, lang))
+      .join(', ');
+
+    const sample = courseSample || fallback;
+
+    return sample
+      ? [`${summary}`, `${lang === 'da' ? 'Udvalgte forløb' : 'Selected courses'}: ${sample}`]
       : [summary];
   }
 
-  return [t(entry.description, lang)];
+  if (entry.description) {
+    return [t(entry.description, lang)];
+  }
+
+  return [];
 }
 
 export function getPdfEducationEntries(lang = 'da') {
@@ -60,7 +128,7 @@ export function getFeaturedProjects(lang = 'da') {
     .filter((project) => featuredIds.includes(project.id))
     .sort((a, b) => featuredIds.indexOf(a.id) - featuredIds.indexOf(b.id))
     .map((project) => {
-      const tech = project.technologies.slice(0, 3).join(', ');
+      const tech = project.technologies.slice(0, 4).join(', ');
       return `${project.title} (${tech}): ${t(project.description, lang)}`;
     });
 }
@@ -80,27 +148,30 @@ export function buildWebPdfData(lang = 'da') {
     github: personalInfo.github,
     onlineCv: pdf.onlineCv,
     summary: t(personalInfo.summary, lang),
-    technicalSkills: getTechnicalSkills(),
+    technicalSkills: getTechnicalSkills(lang),
+    skillGroups: getPdfSkillGroups(lang),
     experience: getPdfExperienceEntries(lang),
     education: getPdfEducationEntries(lang),
     projects: getFeaturedProjects(lang),
   };
 }
 
-export function buildCliPdfData(lang = 'da') {
+export function buildCliPdfData(lang = 'da', options = {}) {
   const { personalInfo, pdf } = cvData;
 
   return {
     lang,
-    name: t(pdf.displayName, lang),
+    name: personalInfo.name,
     title: t(personalInfo.title, lang),
+    avatar: options.avatarPath || null,
     phone: `+45 ${personalInfo.phone}`,
     email: personalInfo.email,
     linkedin: personalInfo.linkedin,
     github: personalInfo.github,
     onlineCv: pdf.onlineCv,
     summary: t(personalInfo.summary, lang),
-    technicalSkills: getTechnicalSkills(),
+    technicalSkills: getTechnicalSkills(lang),
+    skillGroups: getPdfSkillGroups(lang),
     experience: getPdfExperienceEntries(lang),
     education: getPdfEducationEntries(lang),
     projects: getFeaturedProjects(lang),

@@ -25,9 +25,11 @@ const Experience = ({ lang = 'da' }) => {
               <Calendar size={16} className="period-icon" />
               {job.period}
             </div>
-            <div className="job-description experience-description">
-              {typeof job.description === 'object' ? (job.description[lang] || job.description['da'] || Object.values(job.description)[0]) : job.description}
-            </div>
+            {job.description && (
+              <div className="job-description experience-description">
+                {typeof job.description === 'object' ? (job.description[lang] || job.description['da'] || Object.values(job.description)[0]) : job.description}
+              </div>
+            )}
             {job.courses && (
               <ul className="course-list">
                 {job.courses.map((course, courseIndex) => (
@@ -48,7 +50,7 @@ const Experience = ({ lang = 'da' }) => {
                 <span className="experience-tech-badge badge badge-secondary">VHDL</span>
               </div>
             )}
-            {job.achievements && (
+            {job.achievements?.length > 0 && (
               <div className="achievements">
                 <h4 className="achievements-title">
                   {lang === 'da' ? 'Resultater & Erfaringer:' : 'Results & Experience:'}

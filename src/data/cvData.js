@@ -13,8 +13,8 @@ export const cvData = {
     phone: "29176851",
     email: "Victor.olszowski@gmail.com",
     summary: {
-      da: "Nyuddannet datamatiker med praktisk erfaring i backend-udvikling fra 10 ugers praktikforløb hos Kruso, hvor jeg designede og implementerede backend-strukturer med .NET, C# og Umbraco. Solid baggrund i moderne programmeringssprog og teknologier gennem både erhvervserfaring og akademiske projekter. Trives i teams og motiveret af at skrive vedligeholdelsesvenlig kode.",
-      en: "Recently graduated Computer Science professional with practical backend development experience from a 10-week internship at Kruso, where I designed and implemented backend structures using .NET, C# and Umbraco. Solid foundation in modern programming languages and technologies through both professional and academic projects. Thrives in teams and motivated by writing maintainable code."
+      da: "Nyuddannet datamatiker med praktisk erfaring i fullstack- og backend-udvikling. I et 10-ugers praktikforløb hos Kruso designede og implementerede jeg REST API'er, service-/repository-lag og integrationer i C# og .NET med SQL. Gennem studiet har jeg arbejdet med JavaScript, Vue.js, React, unit- og integrationstest, Git samt CI/CD og deployment til Azure. Trives i agile teams med code reviews og parprogrammering, og motiveres af at skrive vedligeholdelsesvenlig, veldokumenteret kode.",
+      en: "Recently graduated Computer Science professional with hands-on full-stack and backend experience. During a 10-week internship at Kruso I designed and implemented REST APIs, service/repository layers and integrations in C# and .NET with SQL. Through my studies I have worked with JavaScript, Vue.js, React, unit and integration testing, Git, CI/CD and Azure deployment. My thesis focused on Model Context Protocol (MCP) and AI integration in Python. Thrives in agile teams with code reviews and pair programming, and is motivated by writing maintainable, well-documented code."
     },
     github: "https://github.com/Viggo0205",
     linkedin: "https://www.linkedin.com/in/victor-olszowski-56a40634b/"
@@ -24,7 +24,7 @@ export const cvData = {
     displayName: "V. Olszowski",
     onlineCv: "https://viggo0205.github.io/OnlineCV/",
     avatarPath: "/OnlineCV/ProfilBillede.PNG",
-    featuredProjectIds: [5, 1, 2, 4]
+    featuredProjectIds: [2, 4, 5, 1]
   },
 
   education: [
@@ -34,8 +34,8 @@ export const cvData = {
       institution: "Zealand",
       period: "2023–2026",
       details: {
-        da: "Softwareudvikling, systemudvikling og backend-fokuserede forløb. Hovedopgave: MCP og AI-integration.",
-        en: "Software development, system development, and backend-focused coursework. Thesis: MCP and AI integration."
+        da: "Softwareudvikling, fullstack, systemudvikling og backend. Hovedopgave: MCP og AI-integration.",
+        en: "Software development, full-stack, system development and backend. Thesis: MCP and AI integration."
       }
     },
     {
@@ -118,7 +118,8 @@ export const cvData = {
       { name: "PostgreSQL", level: 60, experience: { da: "Erfaring fra hovedforløb", en: "Experience from main programme" } },
       { name: "JavaScript", level: 65, experience: { da: "Funktionel arbejdskendskab", en: "Working knowledge" } },
       { name: "Java", level: 60, experience: { da: "God erfaring", en: "Solid experience" } },
-      { name: "Python", level: 55, experience: { da: "Grundlæggende+", en: "Basic+" } },
+      { name: "Python", level: 65, experience: { da: "Erfaring fra hovedopgave", en: "Thesis project experience" } },
+      { name: "TypeScript", level: 50, experience: { da: "Grundlæggende", en: "Basic" } },
       { name: "HTML/CSS", level: 70, experience: { da: "Solid grundlag", en: "Solid foundation" } },
       { name: "Matlab", level: 45, experience: { da: "Grundlæggende", en: "Basic" } },
       { name: "C++", level: 40, experience: { da: "Grundlæggende", en: "Basic" } },
@@ -135,7 +136,14 @@ export const cvData = {
       "PostgreSQL",
       "TCP/UDP servers",
       "REST API",
-      "Webapps"
+      "Webapps",
+      "Linux",
+      "VirtualBox",
+      "Unit testing",
+      "Integration testing",
+      "AI Integration",
+      "LLM APIs",
+      "MCP"
     ],
     frameworks: [
       { name: "Umbraco", versions: ["13", "16"] },
@@ -170,8 +178,8 @@ export const cvData = {
 
   personalProfile: {
     description: {
-      da: "Nyuddannet datamatiker med praktisk erfaring i backend-udvikling fra 10 ugers praktikforløb hos Kruso, hvor jeg designede og implementerede backend-strukturer med .NET, C# og Umbraco. Solid baggrund i moderne programmeringssprog og teknologier gennem både erhvervserfaring og akademiske projekter. Trives i teams og motiveret af at skrive vedligeholdelsesvenlig kode.",
-      en: "Recently graduated Computer Science professional with practical backend development experience from a 10-week internship at Kruso, where I designed and implemented backend structures using .NET, C# and Umbraco. Solid foundation in modern programming languages and technologies through both professional and academic projects. Thrives in teams and motivated by writing maintainable code."
+      da: "Nyuddannet datamatiker med praktisk erfaring i fullstack- og backend-udvikling. I et 10-ugers praktikforløb hos Kruso designede og implementerede jeg REST API'er, service-/repository-lag og integrationer i C# og .NET med SQL. Gennem studiet har jeg arbejdet med JavaScript, Vue.js, React, unit- og integrationstest, Git samt CI/CD og deployment til Azure. Trives i agile teams med code reviews og parprogrammering, og motiveres af at skrive vedligeholdelsesvenlig, veldokumenteret kode.",
+      en: "Recently graduated Computer Science professional with hands-on full-stack and backend experience. During a 10-week internship at Kruso I designed and implemented REST APIs, service/repository layers and integrations in C# and .NET with SQL. Through my studies I have worked with JavaScript, Vue.js, React, unit and integration testing, Git, CI/CD and Azure deployment. My thesis focused on Model Context Protocol (MCP) and AI integration in Python. Thrives in agile teams with code reviews and pair programming, and is motivated by writing maintainable, well-documented code."
     },
     interests: {
       da: [
@@ -239,6 +247,7 @@ export const cvData = {
         en: "Through my Computer Science education at Zealand, I completed a series of courses that strengthened my skills in software development, databases, system development, and programming."
       },
       courses: [
+        { da: "Hovedopgave: Model Context Protocol (MCP) - Integration af AI-værktøjer og protokoller", en: "Final Thesis: Model Context Protocol (MCP) - AI tool integration and protocol design" },
         { da: "Første årsprøven", en: "First Year Exam" },
         { da: "Systemudviklingsprøven", en: "System Development Exam" },
         { da: "Programmeringsprøven", en: "Programming Exam" },
@@ -246,8 +255,7 @@ export const cvData = {
         { da: "SQL Databaser", en: "SQL Databases" },
         { da: "IT-sikkerhed", en: "IT Security" },
         { da: "Valgfagsprøven", en: "Elective Course Exam" },
-        { da: "Praktikprøven", en: "Internship Exam" },
-        { da: "Hovedopgave: Model Context Protocol (MCP) - Integration af AI-værktøjer og protokoller", en: "Final Thesis: Model Context Protocol (MCP) - AI tool integration and protocol design" }
+        { da: "Praktikprøven", en: "Internship Exam" }
       ],
       technologies: ["C#", "JavaScript", "SQL", "PostgreSQL", "Azure App Service", "GitHub Actions", "Entity Framework", "Vue.js"]
     },
@@ -268,6 +276,13 @@ export const cvData = {
         { da: "Håndterede validering og fejlhåndtering på API-niveau", en: "Handled validation and error handling at API level" }
       ],
       technologies: [".NET", "Umbraco", "C#", "SQLite"]
+    },
+    {
+      id: 4,
+      title: { da: "Tilkaldevikar – lærer", en: "On-call Substitute Teacher" },
+      company: "Fjordlandsskolen",
+      period: "2022–nu",
+      achievements: []
     }
   ],
 
@@ -314,7 +329,7 @@ export const cvData = {
     },
     {
       id: 5,
-      title: "Hovedopgave - Model Context Protocol",
+      title: "Final Thesis – Model Context Protocol (MCP)",
       description: {
         da: "Afsluttende hovedopgave om Model Context Protocol (MCP). Design og implementering af AI-integrationsprotokoller med fokus på sikkerhed, dataflow og API-design.",
         en: "Final thesis on Model Context Protocol (MCP). Design and implementation of AI integration protocols with a focus on security, data flow and API design."

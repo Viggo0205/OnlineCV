@@ -1,19 +1,46 @@
-import React from 'react';
-import { Page, Text, View, Document, Image } from '@react-pdf/renderer';
-import { createPdfStyles, pdfSectionTitles } from './pdfStyles.js';
+import React from "react";
+import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
+import { createPdfStyles, pdfSectionTitles } from "./pdfStyles.js";
 
-export function createCvPdfElement(data, variant = 'web') {
+function renderSkillGroups(data, styles, isCompact) {
+  const groups = data.skillGroups;
+  if (groups?.length) {
+    return React.createElement(
+      View,
+      { style: isCompact ? styles.skillsBox : styles.skillsSection },
+      ...groups.map((group, index) =>
+        React.createElement(
+          View,
+          { key: `skill-group-${index}`, style: styles.skillGroupRow },
+          React.createElement(Text, { style: styles.skillGroupLabel }, group.label),
+          React.createElement(Text, { style: styles.skillGroupValue }, group.skills.join(" \u00b7 "))
+        )
+      )
+    );
+  }
+
+  return React.createElement(
+    View,
+    { style: isCompact ? styles.skillsBox : styles.skillsSection },
+    React.createElement(
+      Text,
+      { style: isCompact ? styles.paragraph : styles.skillsText },
+      (data.technicalSkills || []).join(", ")
+    )
+  );
+}
+
+export function createCvPdfElement(data, variant = "web") {
   const styles = createPdfStyles();
   const titles = pdfSectionTitles;
-  const lang = data.lang || 'da';
-  const skillsString = data.technicalSkills.join(', ');
-  const isCompact = variant === 'cli';
-  const phone = String(data.phone).replace(/^\+45\s?/, '');
+  const lang = data.lang || "da";
+  const isCompact = variant === "cli";
+  const phone = String(data.phone).replace(/^\+45\s?/, "");
 
-  const experienceNodes = data.experience.flatMap((entry, index) => {
-    const block = React.createElement(
+  const experienceNodes = data.experience.map((entry, index) =>
+    React.createElement(
       View,
-      { key: `exp-${index}`, style: isCompact ? styles.itemBlock : styles.expBlock },
+      { key: `exp-${index}`, style: isCompact ? styles.itemBlock : styles.expBlock, wrap: false },
       React.createElement(
         Text,
         { style: isCompact ? styles.itemTitle : styles.expTitle },
@@ -22,30 +49,29 @@ export function createCvPdfElement(data, variant = 'web') {
       React.createElement(
         Text,
         { style: isCompact ? styles.itemMeta : styles.expSub },
-        `${entry.company}${entry.period ? ` | ${entry.period}` : ''}`
+        `${entry.company}${entry.period ? `  \u00b7  ${entry.period}` : ""}`
       ),
       ...(entry.bullets || []).map((bullet, bulletIndex) =>
         React.createElement(
           Text,
           { key: `exp-${index}-bullet-${bulletIndex}`, style: styles.bullet },
-          `- ${bullet}`
+          `\u2022 ${bullet}`
         )
       )
-    );
-
-    return [block];
-  });
+    )
+  );
 
   const educationNodes = data.education.map((entry, index) =>
     React.createElement(
       View,
       { key: `edu-${index}`, style: isCompact ? styles.itemBlock : styles.eduBlock },
       React.createElement(Text, { style: isCompact ? styles.itemTitle : styles.eduTitle }, entry.degree),
-      React.createElement(Text, { style: isCompact ? styles.itemMeta : styles.eduSub }, entry.institution),
-      entry.period
-        ? React.createElement(Text, { style: isCompact ? styles.itemMeta : styles.eduSub }, entry.period)
-        : null,
-      React.createElement(Text, { style: isCompact ? undefined : styles.eduSub }, entry.details)
+      React.createElement(
+        Text,
+        { style: isCompact ? styles.itemMeta : styles.eduSub },
+        entry.period ? `${entry.institution}  \u00b7  ${entry.period}` : entry.institution
+      ),
+      React.createElement(Text, { style: isCompact ? styles.itemMeta : styles.eduSub }, entry.details)
     )
   );
 
@@ -53,51 +79,41 @@ export function createCvPdfElement(data, variant = 'web') {
     React.createElement(
       Text,
       { key: `project-${index}`, style: isCompact ? styles.bullet : styles.skillItem },
-      isCompact ? `- ${project}` : `• ${project}`
+      `\u2022 ${project}`
     )
   );
+
+  const headerChildren = [
+    React.createElement(Text, { key: "name", style: styles.name }, data.name),
+    React.createElement(
+      Text,
+      { key: "title", style: isCompact ? styles.titleCompact : styles.title },
+      data.title
+    ),
+  ];
+
+  if (isCompact) {
+    headerChildren.push(
+      React.createElement(
+        View,
+        { key: "contact", style: styles.contactInfo },
+        React.createElement(Text, { style: styles.contactLine }, `${data.email}  \u00b7  ${data.phone}`),
+        React.createElement(Text, { style: styles.contactLine }, data.linkedin),
+        React.createElement(Text, { style: styles.contactLine }, `${data.github}  \u00b7  ${data.onlineCv}`)
+      )
+    );
+  }
 
   return React.createElement(
     Document,
     null,
     React.createElement(
       Page,
-      { size: 'A4', style: styles.page },
+      { size: "A4", style: styles.page },
       React.createElement(
         View,
-        { style: isCompact ? styles.headerCompact : styles.header },
-        !isCompact && data.avatar
-          ? React.createElement(Image, { src: data.avatar, style: styles.avatar })
-          : null,
-        React.createElement(
-          View,
-          { style: isCompact ? undefined : styles.headerText },
-          React.createElement(Text, { style: styles.name }, data.name),
-          React.createElement(
-            Text,
-            { style: isCompact ? styles.titleCompact : styles.title },
-            data.title
-          ),
-          isCompact
-            ? [
-                React.createElement(
-                  Text,
-                  { key: 'contact-email', style: styles.contactLine },
-                  `Email: ${data.email} | Phone: ${data.phone}`
-                ),
-                React.createElement(
-                  Text,
-                  { key: 'contact-linkedin', style: styles.contactLine },
-                  `LinkedIn: ${data.linkedin}`
-                ),
-                React.createElement(
-                  Text,
-                  { key: 'contact-github', style: styles.contactLine },
-                  `GitHub: ${data.github} | OnlineCV: ${data.onlineCv}`
-                ),
-              ]
-            : null
-        )
+        { style: styles.headerCompact },
+        ...headerChildren
       ),
       !isCompact
         ? React.createElement(
@@ -105,27 +121,13 @@ export function createCvPdfElement(data, variant = 'web') {
             { style: styles.contactInfo },
             React.createElement(
               Text,
-              null,
-              `${titles.email[lang]}: ${data.email} | ${titles.phone[lang]}: +45 ${phone}`
+              { style: styles.contactLine },
+              `${titles.email[lang]}: ${data.email}  \u00b7  ${titles.phone[lang]}: +45 ${phone}`
             ),
-            React.createElement(Text, null, `LinkedIn: ${data.linkedin}`),
-            React.createElement(Text, null, `GitHub: ${data.github} | OnlineCV: ${data.onlineCv}`)
+            React.createElement(Text, { style: styles.contactLine }, data.linkedin),
+            React.createElement(Text, { style: styles.contactLine }, `${data.github}  \u00b7  ${data.onlineCv}`)
           )
         : null,
-      React.createElement(
-        Text,
-        { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
-        titles.technicalSkills[lang]
-      ),
-      React.createElement(
-        View,
-        { style: isCompact ? styles.skillsBox : styles.skillsSection },
-        React.createElement(
-          Text,
-          { style: isCompact ? styles.paragraph : styles.skillsText },
-          skillsString
-        )
-      ),
       React.createElement(
         Text,
         { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
@@ -136,27 +138,38 @@ export function createCvPdfElement(data, variant = 'web') {
         { style: isCompact ? styles.paragraph : styles.summary },
         data.summary
       ),
-      !isCompact ? React.createElement(View, { style: styles.divider }) : null,
+      React.createElement(
+        Text,
+        { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
+        titles.technicalSkills[lang]
+      ),
+      renderSkillGroups(data, styles, isCompact),
       React.createElement(
         Text,
         { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
         titles.experience[lang]
       ),
       ...experienceNodes,
-      !isCompact ? React.createElement(View, { style: styles.divider }) : null,
       React.createElement(
-        Text,
-        { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
-        titles.education[lang]
+        View,
+        { wrap: false },
+        React.createElement(
+          Text,
+          { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
+          titles.education[lang]
+        ),
+        ...educationNodes
       ),
-      ...educationNodes,
-      !isCompact ? React.createElement(View, { style: styles.divider }) : null,
       React.createElement(
-        Text,
-        { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
-        titles.keyProjects[lang]
-      ),
-      React.createElement(View, { style: styles.skillList }, ...projectNodes)
+        View,
+        { wrap: false },
+        React.createElement(
+          Text,
+          { style: isCompact ? styles.sectionTitleCompact : styles.sectionTitle },
+          titles.keyProjects[lang]
+        ),
+        React.createElement(View, { style: styles.skillList }, ...projectNodes)
+      )
     )
   );
 }
