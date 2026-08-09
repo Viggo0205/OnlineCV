@@ -1,7 +1,8 @@
-import { lazy, Suspense } from 'react';
-import { Download } from 'lucide-react';
+import { lazy, Suspense } from 'react'
+import { Download } from 'lucide-react'
+import { useLanguage } from './LanguageProvider'
 
-const CVPDFExport = lazy(() => import('./CVPDFExport'));
+const CVPDFExport = lazy(() => import('./CVPDFExport'))
 
 const fallbackStyle = {
   display: 'inline-flex',
@@ -12,21 +13,23 @@ const fallbackStyle = {
   padding: '0 1em',
   boxSizing: 'border-box',
   verticalAlign: 'middle',
-};
-
-function CVPDFExportFallback({ lang = 'da' }) {
-  return (
-    <span className="btn btn-outline" style={fallbackStyle} aria-hidden="true">
-      <Download size={16} />
-      <span>{lang === 'en' ? 'Download PDF' : 'Download PDF'}</span>
-    </span>
-  );
 }
 
-const CVPDFExportLazy = ({ lang = 'da' }) => (
-  <Suspense fallback={<CVPDFExportFallback lang={lang} />}>
-    <CVPDFExport lang={lang} />
-  </Suspense>
-);
+function CVPDFExportFallback() {
+  const { label } = useLanguage()
 
-export default CVPDFExportLazy;
+  return (
+    <span className="btn btn-outline nav-pdf-btn" style={fallbackStyle} aria-hidden="true">
+      <Download size={16} />
+      <span className="nav-pdf-label">{label('downloadPdf')}</span>
+    </span>
+  )
+}
+
+const CVPDFExportLazy = () => (
+  <Suspense fallback={<CVPDFExportFallback />}>
+    <CVPDFExport />
+  </Suspense>
+)
+
+export default CVPDFExportLazy

@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
+import { Page, Text, View, Document } from "@react-pdf/renderer";
 import { createPdfStyles, pdfSectionTitles } from "./pdfStyles.js";
 
 function renderSkillGroups(data, styles, isCompact) {

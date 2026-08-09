@@ -1,10 +1,12 @@
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { Download } from 'lucide-react';
-import { buildWebPdfData } from '../data/cvPdfData';
-import { CVPdfDocument } from './CVPdfDocument';
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import { Download } from 'lucide-react'
+import { buildWebPdfData } from '../data/cvPdfData'
+import { useLanguage } from './LanguageProvider'
+import { CVPdfDocument } from './CVPdfDocument'
 
-const CVPDFExport = ({ lang = 'da' }) => {
-  const pdfData = buildWebPdfData(lang);
+const CVPDFExport = () => {
+  const { lang, label } = useLanguage()
+  const pdfData = buildWebPdfData(lang)
 
   return (
     <PDFDownloadLink
@@ -24,9 +26,9 @@ const CVPDFExport = ({ lang = 'da' }) => {
       }}
     >
       <Download size={16} aria-hidden="true" />
-      <span className="nav-pdf-label">{lang === 'en' ? 'Download PDF' : 'Download PDF'}</span>
+      <span className="nav-pdf-label">{label('downloadPdf')}</span>
     </PDFDownloadLink>
-  );
-};
+  )
+}
 
-export default CVPDFExport;
+export default CVPDFExport

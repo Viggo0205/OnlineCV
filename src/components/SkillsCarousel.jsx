@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useLanguage } from './LanguageProvider'
 
 const logoMap = {
   'C#': 'CSharpLogo.png',
@@ -7,13 +8,14 @@ const logoMap = {
   PostgreSQL: 'SQLLogo.png',
   Java: 'Javalogo.png',
   JavaScript: 'JavaScriptLogo.png',
+  Python: 'PythonLogo.png',
   'HTML/CSS': 'HTMLLogo.webp',
   HTML: 'HTMLLogo.webp',
   Matlab: 'MatLabLogo.png',
   'C++': 'C++logo.png',
   R: 'RLogo.png',
   C: 'CLogo.png',
-};
+}
 
 function chunkArray(array, size) {
   const result = [];
@@ -23,8 +25,9 @@ function chunkArray(array, size) {
   return result;
 }
 
-function SkillsCarousel({ languages, lang = 'da' }) {
-  const frameRef = useRef(null);
+function SkillsCarousel({ languages }) {
+  const { label } = useLanguage()
+  const frameRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0);
   const [pageSize, setPageSize] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 3));
   const [isPaused, setIsPaused] = useState(false);
@@ -131,7 +134,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
               type="button"
               className="skills-carousel-nav skills-carousel-nav-prev"
               onClick={goPrev}
-              aria-label={lang === 'da' ? 'Forrige sprog' : 'Previous languages'}
+              aria-label={label('prevLanguages')}
             >
               <ChevronLeft size={22} strokeWidth={2.25} />
             </button>
@@ -145,8 +148,8 @@ function SkillsCarousel({ languages, lang = 'da' }) {
           >
             <div className={`skills-carousel-grid${pageSize === 1 ? ' is-single' : ''}`}>
               {activeSlide.map((langObj) => {
-                const logoFile = logoMap[langObj.name];
-                const logoSrc = logoFile ? `${import.meta.env.BASE_URL}${logoFile}` : null;
+                const logoFile = logoMap[langObj.name]
+                const logoSrc = logoFile ? `${import.meta.env.BASE_URL}${logoFile}` : null
 
                 return (
                   <article key={langObj.name} className="skills-language-card">
@@ -172,7 +175,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
                       <h4 className="skills-language-name">{langObj.name}</h4>
                     </div>
                   </article>
-                );
+                )
               })}
             </div>
           </div>
@@ -182,7 +185,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
               type="button"
               className="skills-carousel-nav skills-carousel-nav-next"
               onClick={goNext}
-              aria-label={lang === 'da' ? 'Næste sprog' : 'Next languages'}
+              aria-label={label('nextLanguages')}
             >
               <ChevronRight size={22} strokeWidth={2.25} />
             </button>
@@ -196,7 +199,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
               <span className="skills-carousel-page-separator">/</span>
               <span>{String(slideCount).padStart(2, '0')}</span>
             </div>
-            <div className="skills-carousel-dots" role="tablist" aria-label={lang === 'da' ? 'Sprog slides' : 'Language slides'}>
+            <div className="skills-carousel-dots" role="tablist" aria-label={label('languageSlides')}>
               {slides.map((_, index) => (
                 <button
                   key={`dot-${index}`}
@@ -205,7 +208,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
                   aria-selected={index === activeIndex}
                   className={`skills-carousel-dot${index === activeIndex ? ' is-active' : ''}`}
                   onClick={() => goTo(index)}
-                  aria-label={lang === 'da' ? `Vis slide ${index + 1}` : `Show slide ${index + 1}`}
+                  aria-label={`${label('showSlide')} ${index + 1}`}
                 />
               ))}
             </div>
@@ -213,7 +216,7 @@ function SkillsCarousel({ languages, lang = 'da' }) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default SkillsCarousel;
