@@ -79,7 +79,7 @@ const Navigation = ({ lang = 'da', setLang }) => {
           <CVPDFExportLazy lang={lang} />
           <button
             type="button"
-            className="btn btn-primary nav-language-btn"
+            className="btn btn-secondary nav-language-btn"
             onClick={() => {
               const newLang = lang === 'da' ? 'en' : 'da'
               setLang(newLang)
