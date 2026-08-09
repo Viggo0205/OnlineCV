@@ -104,6 +104,7 @@
 html {
   font-size: 16px;
   scroll-behavior: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -116,6 +117,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 [data-theme="dark"] body {
@@ -127,6 +129,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.25rem;
+  width: 100%;
 }
 
 /* Scrollbar styling */

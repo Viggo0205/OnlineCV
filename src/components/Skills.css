@@ -246,14 +246,15 @@
   }
 
   .skills-carousel-stage {
-    min-height: 236px;
+    min-height: 220px;
   }
 
   .skills-carousel-grid,
   .skills-carousel-grid.is-single {
     grid-template-columns: minmax(0, 1fr);
-    max-width: 320px;
-    margin-inline: auto;
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
   }
 
   .skills-carousel-footer {
@@ -329,8 +330,9 @@
   margin-bottom: var(--spacing-lg);
 }
 .carousel-content {
-  min-width: 220px;
-  max-width: 320px;
+  min-width: 0;
+  max-width: none;
+  width: 100%;
 }
 .carousel-btn {
   background: var(--primary-color);

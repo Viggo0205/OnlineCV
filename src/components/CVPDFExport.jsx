@@ -10,7 +10,7 @@ const CVPDFExport = ({ lang = 'da' }) => {
     <PDFDownloadLink
       document={<CVPdfDocument data={pdfData} variant="web" />}
       fileName={`CV_${lang}.pdf`}
-      className="btn btn-outline"
+      className="btn btn-outline nav-pdf-btn"
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -23,8 +23,8 @@ const CVPDFExport = ({ lang = 'da' }) => {
         verticalAlign: 'middle',
       }}
     >
-      <Download size={16} />
-      <span>{lang === 'en' ? 'Download PDF' : 'Download PDF'}</span>
+      <Download size={16} aria-hidden="true" />
+      <span className="nav-pdf-label">{lang === 'en' ? 'Download PDF' : 'Download PDF'}</span>
     </PDFDownloadLink>
   );
 };

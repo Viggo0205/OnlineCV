@@ -37,9 +37,8 @@
   box-shadow: var(--shadow-sm);
   margin-bottom: 0;
   position: relative;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-  contain: layout style paint;
+  overflow-x: clip;
+  min-width: 0;
 }
 
 [data-theme="dark"] .section {
@@ -270,26 +269,34 @@
   100% { transform: translateX(100%); }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .app-content {
-    padding: var(--spacing-sm) 0.85rem;
+    padding: 0.85rem 0.75rem 1.5rem;
   }
-  
+
   .section {
-    border-radius: 24px;
-    padding: 1.4rem;
+    border-radius: 20px;
+    padding: 1.15rem;
   }
-  
+
   .section-title {
     font-size: var(--font-size-xl);
-    gap: 0.6rem;
+    gap: 0.55rem;
+    flex-wrap: wrap;
   }
-  
+
+  .section-title-icon {
+    padding: 0.45rem;
+  }
+
+  .main-content {
+    gap: 1.15rem;
+  }
+
   .grid {
     gap: var(--spacing-md);
   }
-  
+
   .grid-2,
   .grid-3 {
     grid-template-columns: 1fr;
@@ -297,18 +304,23 @@
 }
 
 @media (max-width: 480px) {
+  .app-content {
+    padding: 0.65rem 0.6rem 1.25rem;
+  }
+
   .section {
-    padding: 1.15rem;
+    padding: 1rem;
+    border-radius: 18px;
   }
-  
+
   .section-title {
-    font-size: var(--font-size-lg);
+    font-size: 1.15rem;
   }
-  
+
   .card {
     padding: var(--spacing-md);
   }
-  
+
   .btn {
     font-size: var(--font-size-xs);
     padding: 0.65rem 0.9rem;
